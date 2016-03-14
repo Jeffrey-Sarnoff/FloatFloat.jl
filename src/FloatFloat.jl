@@ -1,4 +1,4 @@
-module FloatFloats
+module FloatFloat
 
 import Base: hash, string, 
     show, showcompact, showall,
@@ -7,6 +7,6 @@ import Base: hash, string,
     (==),(!=),(<),(<=),(>=),(>),
     (+),(-),(*),(/),(\),(%),(^)
 
-export FloatFloat, FF
+export FF32, FF64, FF128
 
 end # module
