@@ -9,4 +9,6 @@ import Base: hash, string,
 
 export FF32, FF64, FF128
 
+include("type/FF.jl")
+
 end # module
