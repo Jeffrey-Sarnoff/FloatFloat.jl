@@ -1,1 +1,1 @@
-## FloatFloat.jl
+## FloatFloats.jl
