@@ -9,7 +9,8 @@ import Base: hash, string,
     (+),(-),(*),(/),(\),(%),(^)
 
 export FF32, FF64, FF128,
-    iszero, isnonzero, ispos, isneg, isnonneg
+    iszero, isnonzero, ispos, isneg, isnonneg,
+    hash
 
 using ErrorfreeArithmetic
 using AccurateArithmetic
