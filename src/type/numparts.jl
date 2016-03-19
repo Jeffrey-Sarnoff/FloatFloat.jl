@@ -22,7 +22,7 @@ copysign{T<:Real}(a::FF{T},b::FF{T}) = copysign(a,b.hi)
 function frexp{T<:Real}(a::FF{T})
     frhi, xphi = frexp(a.hi)
     frlo, xplo = frexp(a.lo)
-    DD(frhi, ldexp(frlo,xplo-xphi)), xphi
+    FF(frhi, ldexp(frlo,xplo-xphi)), xphi
 end
 
 function ldexp{T<:Real}(a::FF{T},xp::Int)
