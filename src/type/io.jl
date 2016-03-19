@@ -7,13 +7,13 @@ function stringcompact{T}(x::FF{T})
 end
 
 function show{T}(io::IO, x::FF{T})
-    print(io, string(s))
+    print(io, string(x))
 end
 
 function showcompact{T}(io::IO, x::FF{T})
-    print(io, stringcompact(s))
+    print(io, stringcompact(x))
 end
 
 function showall{T}(io::IO, x::FF{T})
-    print(io, string(s))
+    print(io, string(x))
 end
