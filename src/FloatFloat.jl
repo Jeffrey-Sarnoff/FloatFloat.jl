@@ -3,11 +3,13 @@ module FloatFloat
 import Base: hash, string, 
     show, showcompact, showall,
     convert, promote_rule,
+    isnan, isinf, isfinite, issubnormal,
     isequal, isless, 
     (==),(!=),(<),(<=),(>=),(>),
     (+),(-),(*),(/),(\),(%),(^)
 
-export FF32, FF64, FF128
+export FF32, FF64, FF128,
+    iszero, isnonzero, ispos, isneg, isnonneg
 
 using ErrorfreeArithmetic
 using AccurateArithmetic
