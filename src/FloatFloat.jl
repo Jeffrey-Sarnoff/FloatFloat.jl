@@ -10,6 +10,7 @@ import Base: hash, string,
 export FF32, FF64, FF128
 
 using ErrorfreeArithmetic
+using AccurateArithmetic
 
 include("type/FF.jl")
 include("type/io.jl")
