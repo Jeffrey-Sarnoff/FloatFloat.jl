@@ -12,5 +12,6 @@ export FF32, FF64, FF128
 using ErrorfreeArithmetic
 
 include("type/FF.jl")
+include("type/io.jl")
 
 end # module
