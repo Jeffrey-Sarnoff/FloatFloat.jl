@@ -1,4 +1,4 @@
-immutable FF{T<:Real} <: Real
+immutable FloatFloat{T<:StdFloat} <: Real
     hi::T
     lo::T
 end
