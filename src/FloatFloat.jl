@@ -8,6 +8,8 @@ import Base: hash, string,
     (==),(!=),(<),(<=),(>=),(>),
     (+),(-),(*),(/),(\),(%),(^)
 
+import JAS: StdFloat
+
 export FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
     hash
