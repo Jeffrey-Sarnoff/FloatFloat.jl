@@ -17,6 +17,7 @@ export FloatFloat, FF32, FF64, FF128,
 using ErrorfreeArithmetic
 using AccurateArithmetic
 
+include("type/FloatFloat.jl")
 include("type/FF.jl")
 include("type/io.jl")
 
