@@ -4,6 +4,11 @@ function divby2{T<:Real}(a::FloatFloat{T})
     FloatFloat{T}(divby2(a.hi), divby2(a.lo))
 end
 
+function divpow2{T<:Real,I<:Integer}(a::FloatFloat{T}, powof2::I)
+     FloatFloat{T}( ldexp(a.hi, -powof2), ldexp(a.lo, -powof2) )
+end
+
+
 function recip{T<:Real}(b::FloatFloat{T})
   q1 = one(T) / b.hi
   r  = one(T) - (q1 * b)
