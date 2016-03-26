@@ -1,4 +1,8 @@
+@inline mulby2{T<:Real}(a::T) = a*(one(T)+one(T))
 
+function mulby2{T<:Real}(a::FloatFloat{T})
+    FloatFloat{T}(mulby2(a.hi), mulby2(a.lo))
+end
 
 function (sqr){T<:Real}(a::FloatFloat{T})
   t1,t2 = eftMul(a.hi,a.hi)
