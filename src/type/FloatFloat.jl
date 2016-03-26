@@ -5,7 +5,7 @@ immutable FloatFloat{T<:Real} <: Real
     FloatFloat{T}(hi::T, lo::T) = new(hi,lo)
 end
 
-# use FloatFloat when it is known that (hi, lo) == eftSum(hi,lo)
+# use FloatFloat when it is known that (hi, lo) == eftAdd(hi,lo)
 #
 # matching to the internal constructor
 FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo)
@@ -14,7 +14,24 @@ FloatFloat{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
 # handle other reasonable inputs; allows e.g. FloatFloat(100,eps(100.0)/4)
 function FloatFloat{T1<:Real, T2<:Real}(hi::T1, lo::T2)
     a,b = promote(hi,lo)
-    FloatFloat{typeof(a)}(a,b)
+    if typeof(a) <: Integer
+       FloatFloat(float(hi), float(lo))
+    else
+       FloatFloat{typeof(a)}(a,b)
+    end
+end    
+
+# use FF when it is not known that (hi,lo) == eftAdd(hi,lo)
+#
+FF{T<:Real}(hi::T, lo::T) = FloatFloat{T}(eftAdd(hi,lo)...)
+FF{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
+function FF{T1<:Real, T2<:Real}(hi::T1, lo::T2)
+    a,b = promote(hi,lo)
+    if typeof(a) <: Integer
+        FF(float(hi), float(lo))
+    else
+        FloatFloat(eftAdd(a,b)...)
+    end
 end    
 
 
@@ -26,6 +43,7 @@ convert{T<:Real}(::Type{FloatFloat{T}}, a::T, b::T) =
 convert{T<:Real}(::Type{FloatFloat}, a::T, b::T) = convert(FloatFloat{T}, a, b)
 # convert other reasonable inputs; allows e.g. convert(FloatFloat, Int32(a), Float64(b))
 convert{T1<:Real, T2<:Real}(::Type{FloatFloat}, a::T1, b::T2) = convert(FloatFloat, promote(a,b)...)
+
 
 
 
