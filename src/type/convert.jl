@@ -39,9 +39,13 @@ function convert{T<:Real}(::Type{BigFloat}, x::FloatFloat{FloatFloat{T}})
 end
 
 function convert{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, x::BigFloat)
+
+function convert{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, x::BigFloat)
     hi = convert(FloatFloat{T}, x)
-    lo = convert(FloatFloat{T}, (x - hi))
+    y  = x - convert(BigFloat, hi)
+    lo = convert(FloatFloat{T}, y)
     FloatFloat{FloatFloat{T}}(hi,lo)
+end
 end
 
 promote_rule{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, ::Type{FloatFloat{T}}) = 
