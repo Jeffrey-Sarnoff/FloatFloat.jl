@@ -48,15 +48,4 @@ function FF{T1<:Real, T2<:Real}(hi::T1, lo::T2)
 end    
 
 
-# use convert to ensure magnitude(hi) >= magnitude(lo)
-#
-convert{T<:Real}(::Type{FloatFloat{T}}, a::T, b::T) = 
-   ifelse(abs(a)>abs(b), FloatFloat(a,b), FloatFloat(b,a))
-# augment external conversion; allows e.g. convert(FloatFloat, Float32(a), Float32(b))
-convert{T<:Real}(::Type{FloatFloat}, a::T, b::T) = convert(FloatFloat{T}, a, b)
-# convert other reasonable inputs; allows e.g. convert(FloatFloat, Int32(a), Float64(b))
-convert{T1<:Real, T2<:Real}(::Type{FloatFloat}, a::T1, b::T2) = convert(FloatFloat, promote(a,b)...)
-
-
-
 
