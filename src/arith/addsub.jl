@@ -26,6 +26,14 @@ end
 (+){T<:Real}(a::Real, b::FloatFloat{T}) = (+)(convert(T,a), b)
 (+){T<:Real}(a::FloatFloat{T}, b::Real) = (+)(a, convert(T,b))
 
+
+function (+){T<:Real}(a::FloatFloat{FloatFloat{T}}, b::FloatFloat{FloatFloat{T}})
+    w,x,y,z = eftAdd(a.hi,b.hi,a.lo,b.lo)
+    FloatFloat(FloatFloat(w,x), FloatFloat(y,z))
+end
+
+    
+
 #=
     subtraction
 =#
