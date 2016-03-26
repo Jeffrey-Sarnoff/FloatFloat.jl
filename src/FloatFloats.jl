@@ -26,4 +26,7 @@ include("type/predicates.jl")
 include("type/convert.jl")
 include("type/io.jl")
 
+include("arith/addsub.jl")
+include("arith/mul.jl")
+
 end # module
