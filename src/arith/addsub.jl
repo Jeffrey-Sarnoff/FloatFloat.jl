@@ -2,7 +2,7 @@
     addition
 =#
 
-function (+){T<:Real}(a::FloatFloat{T}, b::FloatFloat{T{)
+function (+){T<:Real}(a::FloatFloat{T}, b::FloatFloat{T})
     s1, s2 = eftAdd(a.hi,b.hi)
     t1, t2 = eftAdd(a.lo,b.lo)
     s2 += t1
