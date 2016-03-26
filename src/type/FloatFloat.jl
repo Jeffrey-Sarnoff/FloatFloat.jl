@@ -17,7 +17,7 @@ function FloatFloat{T1<:Real, T2<:Real}(hi::T1, lo::T2)
     if typeof(a) <: Integer
        FloatFloat(float(hi), float(lo))
     else
-       FloatFloat{typeof(a)}(a,b)
+       FloatFloat(a,b)
     end
 end    
 
