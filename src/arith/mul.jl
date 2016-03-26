@@ -4,6 +4,11 @@ function mulby2{T<:Real}(a::FloatFloat{T})
     FloatFloat{T}(mulby2(a.hi), mulby2(a.lo))
 end
 
+function mulpow2{T<:Real,I<:Integer}(a::FloatFloat{T}, powof2::I)
+     FloatFloat{T}( ldexp(a.hi, powof2), ldexp(a.lo, powof2) )
+end
+
+
 function (sqr){T<:Real}(a::FloatFloat{T})
   t1,t2 = eftMul(a.hi,a.hi)
   t3 = a.hi * a.lo
