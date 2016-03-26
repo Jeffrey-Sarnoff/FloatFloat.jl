@@ -5,6 +5,8 @@ immutable FloatFloat{T<:Real} <: Real
     FloatFloat{T}(hi::T, lo::T) = new(hi,lo)
 end
 
+# use FloatFloat when it is known that (hi, lo) == eftSum(hi,lo)
+#
 # matching to the internal constructor
 FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo)
 # augmenting external construction
@@ -17,6 +19,7 @@ end
 
 
 # use convert to ensure magnitude(hi) >= magnitude(lo)
+#
 convert{T<:Real}(::Type{FloatFloat{T}}, a::T, b::T) = 
    ifelse(abs(a)>abs(b), FloatFloat(a,b), FloatFloat(b,a))
 # augment external conversion; allows e.g. convert(FloatFloat, Float32(a), Float32(b))
