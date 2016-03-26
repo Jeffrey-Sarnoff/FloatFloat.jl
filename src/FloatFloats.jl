@@ -8,7 +8,8 @@ import Base: hash, string,
     isequal, isless,
     signbit, sign, copysign, flipsign, abs,
     (==),(!=),(<),(<=),(>=),(>),
-    (+),(-),(*),(/),(\),(%),(^)
+    (+),(-),(*),(/),(\),(%),(^),
+    sqrt, hypot
 
 import JAS: StdFloat
 
@@ -29,6 +30,6 @@ include("type/io.jl")
 include("arith/addsub.jl")
 include("arith/mul.jl")
 include("arith/div.jl")
-
+include("arith/sqrt.jl")
 
 end # module
