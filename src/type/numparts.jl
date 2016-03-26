@@ -34,7 +34,11 @@ end
 ldexp{T<:Real,I<:Integer}(fx::Tuple{FloatFloat{T},I}) = ldexp(fx...)
 
 
-zero{T<:Real}(FloatFloat{T}) = FloatFloat(zero(T), zero(T))
-one{T<:Real}(FloatFloat{T}) = FloatFloat(one(T), zero(T))
+
+zero{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(zero(T), zero(T))
+one{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(one(T), zero(T))
+zero{T<:Real}(x::FloatFloat{T}) = zero(FloatFloat{T})
+one{T<:Real}(x::FloatFloat{T}) = one(FloatFloat{T})
+
 InfFF{T<:Real}(FloatFloat{T}) = FloatFloat(Inf(T), Inf(T))
 NaNFF{T<:Real}(FloatFloat{T}) = FloatFloat(NaN(T), NaN(T))
