@@ -15,7 +15,8 @@ import JAS: StdFloat
 
 export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
-    hash
+    hash,
+    NaNFF, InfFF
 
 using ErrorfreeArithmetic
 # using AccurateArithmetic
