@@ -29,3 +29,17 @@ function convert{T1<:Real, T2<:Real}(::Type{FloatFloat{T1}}, x::T2)
    bf = convert(BigFloat, x)
    convert(FloatFloat{T1}, bf)
 end
+
+
+
+function convert{T<:Real}(::Type{BigFloat}, x::FloatFloat{FloatFloat{T}})
+   hi = BigFloat(x.hi)
+   lo = BigFloat(x.lo)
+   hi + lo
+end
+
+function convert{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, x::BigFloat)
+    hi = convert(FloatFloat{T}, x)
+    lo = convert(FloatFloat{T}, (x - hi))
+    FloatFloat{FloatFloat{T}}(hi,lo)
+end
