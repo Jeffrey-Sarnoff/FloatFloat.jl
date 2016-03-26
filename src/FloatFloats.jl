@@ -18,7 +18,7 @@ export FloatFloat, FF, FF32, FF64, FF128,
     hash
 
 using ErrorfreeArithmetic
-using AccurateArithmetic
+# using AccurateArithmetic
 
 include("type/FloatFloat.jl")
 include("type/FF.jl")
