@@ -21,16 +21,29 @@ function FloatFloat{T1<:Real, T2<:Real}(hi::T1, lo::T2)
     end
 end    
 
+#  define explicit conversions for faster immutable type construction
+convert{T<:Real}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
+convert{T<:Real}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
+#  support generalized conversions over FloatFloat type parameter
+convert{T<:Real}(::Type{FloatFloat}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
+convert{T<:Real}(::Type{FloatFloat}, hi::T)        = FloatFloat{T}(hi, zero(T))
+
+
 # use FF when it is not known that (hi,lo) == eftAdd(hi,lo)
 #
-FF{T<:Real}(hi::T, lo::T) = FloatFloat{T}(eftAdd(hi,lo)...)
+function FF{T<:Real}(hi::T, lo::T) 
+  high = hi + lo
+  t = high - hi
+  low = (hi - (high - t)) + (lo - t)
+  FloatFloat(high,low)
+end
 FF{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
 function FF{T1<:Real, T2<:Real}(hi::T1, lo::T2)
     a,b = promote(hi,lo)
     if typeof(a) <: Integer
         FF(float(hi), float(lo))
     else
-        FloatFloat(eftAdd(a,b)...)
+        FF(a,b)
     end
 end    
 
