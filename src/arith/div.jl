@@ -1,3 +1,9 @@
+@inline divby2{T<:Real}(a::T) = a*0.5
+
+function divby2{T<:Real}(a::FloatFloat{T})
+    FloatFloat{T}(divby2(a.hi), divby2(a.lo))
+end
+
 function recip{T<:Real}(b::FloatFloat{T})
   q1 = one(T) / b.hi
   r  = one(T) - (q1 * b)
