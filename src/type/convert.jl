@@ -6,3 +6,26 @@ convert{T1<:Real, T2<:Real}(::Type{T1}, x::FloatFloat{T2}) = (T1)(x.hi)
 
 convert{T1<:Real, T2<:Real}(::Type{FloatFloat{T1}}, x::FloatFloat{T2}) = 
     FloatFloat{T1}(convert(T1,x.hi), convert(T1,x.lo))
+
+
+function convert{T<:Real}(::Type{BigFloat}, x::FloatFloat{T})
+   hi = BigFloat(x.hi)
+   lo = BigFloat(x.lo)
+   hi + lo
+end
+
+function convert{T<:Real}(::Type{FloatFloat{T}}, x::BigFloat)
+    hi = (T)(x)
+    lo = (T)(x - hi)
+    FloatFloat{T}(hi,lo)
+end
+
+function convert{T1<:Real, T2<:Real}(::Type{T1}, x::FloatFloat{T2})
+   bf = convert(BigFloat, x)
+   convert(T1, bf)
+end
+
+function convert{T1<:Real, T2<:Real}(::Type{FloatFloat{T1}}, x::T2)
+   bf = convert(BigFloat, x)
+   convert(FloatFloat{T1}, bf)
+end
