@@ -51,7 +51,7 @@ function (-){T<:Real}(a::T, b::FloatFloat{T})
     s1, s2 = eftSub(a,b.hi)
     s2 -= b.lo
     s1, s2 = eftAddGTE(s1,s2)
-    DD(s1,s2)
+    FloatFloat{T}(s1,s2)
 end
 
 (-){T<:Real}(a::FloatFloat{T}, b::Signed) = (-)(a, convert(T,b))
