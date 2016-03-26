@@ -21,6 +21,9 @@ using AccurateArithmetic
 
 include("type/FloatFloat.jl")
 include("type/FF.jl")
+include("type/numparts.jl")
+include("type/predicates.jl")
+include("type/convert.jl")
 include("type/io.jl")
 
 end # module
