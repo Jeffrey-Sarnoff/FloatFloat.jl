@@ -1,26 +1,21 @@
 sign{T<:Real}(a::FloatFloat{T}) = sign(a.hi)
-signbit{T<:Real}(a::FloatFloat{T}) = signbit(a.hi)
+@inline signbit{T<:Real}(a::FloatFloat{T}) = signbit(a.hi)
 
-(-){T<:Real}(a::FloatFloat{T}) = FF(-a.hi,-a.lo)
-abs{T<:Real}(a::FloatFloat{T}) = (a.hi >= zero(T) ? a : -a)
+#=
+    negation, abs, flipsign, copysigb
+=#
 
-@inline flipsign{T<:Real}(a::FloatFloat{T},b::FloatFloat{T}) = 
-   FloatFloat(flipsign(a.hi,b.hi), flipsign(a.lo,b.hi))
-@inline flipsign{T<:Real}(a::FloatFloat{T},b::Float64) = 
-   FloatFloat(flipsign(a.hi,b), flipsign(a.lo,b))
-@inline flipsign{T<:Real}(a::FloatFloat{T},b::Integer) = 
-   FloatFloat(flipsign(a.hi,b), flipsign(a.lo,b))
+@inline (-){T<:Real}(a::FloatFloat{T}) = FloatFloat{T}(-a.hi, -a.lo)
+@inline abs{T<:Real}(a::FloatFloat{T}) = ifelse(signbit(a.hi), -a, a)
+flipsign{T<:Real}(a::FloatFloat{T}, b::FloatFloat{T}) = ifelse(signbit(b.hi), -a, a)
+flipsign{T1<:Real,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -a, a)
+copysign{T<:Real}(a::FloatFloat{T}, b::FloatFloat{T}) = ifelse(signbit(b.hi), -abs(a), abs(a))
+copysign{T1<:Real,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -abs(a), abs(a))
 
-@inline function copysign{T<:Real}(a::FloatFloat{T},b::Float64)
-    if (b < zero(Float64))
-        a.hi < zero(Float64) ? a : -a
-    else
-        a.hi < zero(Float64) ? -a : a
-    end
-end
-copysign{T<:Real}(a::FloatFloat{T},b::Integer) = copysign(a,convert(Float64,b))
-copysign{T<:Real}(a::FloatFloat{T},b::FloatFloat{T}) = copysign(a,b.hi)
 
+#=
+    frexp, ldexp, zero, one
+=#
 
 function frexp{T<:Real}(a::FloatFloat{T})
     frhi, xphi = frexp(a.hi)
@@ -34,11 +29,12 @@ end
 ldexp{T<:Real,I<:Integer}(fx::Tuple{FloatFloat{T},I}) = ldexp(fx...)
 
 
-
 zero{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(zero(T), zero(T))
 one{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(one(T), zero(T))
 zero{T<:Real}(x::FloatFloat{T}) = zero(FloatFloat{T})
 one{T<:Real}(x::FloatFloat{T}) = one(FloatFloat{T})
+
+# Inf, NaN
 
 InfFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(Inf(T), Inf(T))
 NaNFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(NaN(T), NaN(T))
