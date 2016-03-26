@@ -8,7 +8,6 @@ function (+){T<:Real}(a::FloatFloat{T}, b::FloatFloat{T{)
     FloatFloat(s1,s2)
 end
 
-
 function (+){T<:Real}(a::FloatFloat{T},b::T)
     s1, s2 = eftAdd(a.hi,b)
     s2 += a.lo
