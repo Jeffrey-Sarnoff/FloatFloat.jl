@@ -19,7 +19,9 @@ export FloatFloat, FF, FF32, FF64, FF128,
     NaNFF, InfFF,
     mulby2, divby2, recip, sqr
 
-using ErrorfreeArithmetic
+using Reexport
+@reexport using ErrorfreeArithmetic
+
 # using AccurateArithmetic
 
 include("type/FloatFloat.jl")
