@@ -28,5 +28,7 @@ include("type/io.jl")
 
 include("arith/addsub.jl")
 include("arith/mul.jl")
+include("arith/div.jl")
+
 
 end # module
