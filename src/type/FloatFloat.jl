@@ -31,21 +31,20 @@ convert{T<:Real}(::Type{FloatFloat}, hi::T)        = FloatFloat{T}(hi, zero(T))
 
 # use FF when it is not known that (hi,lo) == eftAdd(hi,lo)
 #
-function FF{T<:Real}(hi::T, lo::T) 
+function FF{T<:StdFloat}(hi::T, lo::T) 
   high = hi + lo
   t = high - hi
   low = (hi - (high - t)) + (lo - t)
   FloatFloat(high,low)
 end
-FF{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
-function FF{T1<:Real, T2<:Real}(hi::T1, lo::T2)
+FF{T<:StdFloat}(hi::T) = FloatFloat{T}(hi,zero(T))
+function FF{T1<:StdFloat, T2<:StdFloat}(hi::T1, lo::T2)
     a,b = promote(hi,lo)
-    if typeof(a) <: Integer
-        FF(float(hi), float(lo))
-    else
-        FF(a,b)
-    end
+    FF(a,b)
 end    
+FF{F<:StdFloat, I<:Integer}(hi::F, lo::I) = FF(promote(hi,lo)...)
+FF{F<:StdFloat, I<:Integer}(hi::I, lo::F) = FF(promote(hi,lo)...)
+FF{I1<:Integer, I2<:Integer}(hi::I1, lo::I2) = FF(promote(float(hi),float(lo))...)
 
 
 
