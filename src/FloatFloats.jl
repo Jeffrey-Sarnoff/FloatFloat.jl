@@ -10,7 +10,7 @@ import Base: hash, string,
 
 import JAS: StdFloat
 
-export FloatFloat, FF32, FF64, FF128,
+export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
     hash
 
