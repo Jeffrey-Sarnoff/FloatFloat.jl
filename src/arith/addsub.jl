@@ -1,14 +1,4 @@
 #=
-    negation, abs, flipsign, copysigb
-=#
-
-(-){T<:Real}(a::FloatFloat{T}) = FloatFloat{T}(-a.hi, -a.lo)
-abs{T<:Real}(a::FloatFloat{T}) = ifelse(signbit(a.hi), -a, a)
-flipsign{T1<:Real,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -a, a)
-copysign{T1<:Real,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -abs(a), abs(a))
-
-
-#=
     addition
 =#
 
