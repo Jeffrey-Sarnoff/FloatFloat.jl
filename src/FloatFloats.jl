@@ -11,7 +11,7 @@ import Base: hash, string,
     (+),(-),(*),(/),(\),(%),(^),
     sqrt, hypot
 
-import JAS: StdFloat
+import Genera: Float, StdFloat
 
 export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
