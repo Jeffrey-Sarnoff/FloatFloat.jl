@@ -7,6 +7,7 @@ sign{T<:Real}(a::FloatFloat{T}) = sign(a.hi)
 
 @inline (-){T<:Real}(a::FloatFloat{T}) = FloatFloat{T}(-a.hi, -a.lo)
 @inline abs{T<:Real}(a::FloatFloat{T}) = ifelse(signbit(a.hi), -a, a)
+
 flipsign{T<:Real}(a::FloatFloat{T}, b::FloatFloat{T}) = ifelse(signbit(b.hi), -a, a)
 flipsign{T1<:Real,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -a, a)
 copysign{T<:Real}(a::FloatFloat{T}, b::FloatFloat{T}) = ifelse(signbit(b.hi), -abs(a), abs(a))
