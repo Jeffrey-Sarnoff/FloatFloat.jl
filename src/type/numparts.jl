@@ -20,11 +20,11 @@ copysign{T1<:Real,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -abs(
 function frexp{T<:Real}(a::FloatFloat{T})
     frhi, xphi = frexp(a.hi)
     frlo, xplo = frexp(a.lo)
-    FF(frhi, ldexp(frlo,xplo-xphi)), xphi
+    FloatF;pat(frhi, ldexp(frlo,xplo-xphi)), xphi
 end
 
 function ldexp{T<:Real}(a::FloatFloat{T},xp::Int)
-    FF(ldexp(a.hi,xp),ldexp(a.lo,xp))
+    FloatFloat(ldexp(a.hi,xp),ldexp(a.lo,xp))
 end
 ldexp{T<:Real,I<:Integer}(fx::Tuple{FloatFloat{T},I}) = ldexp(fx...)
 
