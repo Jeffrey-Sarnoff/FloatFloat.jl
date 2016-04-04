@@ -24,13 +24,14 @@ function sqrt{T<:Real}(a::FloatFloat{T})
     divby2(r + a/r)
 end
 
-
+#=
 function sqrt{T<:Real}(a::FloatFloat{T})
     hi = sqrt(a.hi)
     t,lo = eftMul(hi,hi)
     lo = (((a.hi - t) - lo) + a.lo) / (2*hi)
     FloatFloat{T}(hi,lo)
 end
+=#
 
 # Augmented precision square roots, 2-D norms, and..
 # http://perso.ens-lyon.fr/jean-michel.muller/PID1818753.pdf
@@ -38,7 +39,7 @@ function accSqrt{T<:Real}(a::T)
     hi = sqrt(a)
     lo = fma(-hi,hi,a)
     lo = lo / (2*hi)
-    hi, lo
+    FloatFloat{T}(hi, lo)
 end    
     
 
