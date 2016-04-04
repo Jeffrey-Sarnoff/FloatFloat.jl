@@ -26,7 +26,7 @@ using Reexport
 
 include("type/FloatFloat.jl")
 include("type/FF.jl")
-include("type/numparts.jl")
+include("type/primitive.jl")
 include("type/predicates.jl")
 include("type/convert.jl")
 include("type/io.jl")
