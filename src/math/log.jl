@@ -16,6 +16,6 @@ function log(x::FloatFloat{Float64})
     y = temp * (temp + 1.0)
     y = divby2(divby2(y))
     y = y + 1.0
-    y = divbypow2(y, iy)
+    y = divpow2(y, iy)
     y
 end
