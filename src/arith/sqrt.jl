@@ -14,7 +14,7 @@ function sqrt{T<:Real}(a::FloatFloat{T})
     end
 
     # initial approximation to 1/sqrt(a)
-    r = DD(one(T)/sqrt(a.hi), zero(T))
+    r = FF(one(T)/sqrt(a.hi), zero(T))
 
     r = r + divby2( r * (one(FloatFloat{T}) - (a*(r*r))) )
     r = r + divby2( r * (one(FloatFloat{T}) - (a*(r*r))) )
@@ -24,6 +24,13 @@ function sqrt{T<:Real}(a::FloatFloat{T})
     divby2(r + a/r)
 end
 
+
+function sqrt{T<:Real}(a:FloatFloat{T})
+    hi = sqrt(a.hi)
+    t,lo = eftMul(hi,hi)
+    lo = (((a.hi - t) - lo) + a.lo) / (2*hi)
+    FloatFloat{T}(hi,lo)
+end
 
 function hypot{T<:Real}(a::FloatFloat{T}, b::FloatFloat{T})
     a = abs(a)
