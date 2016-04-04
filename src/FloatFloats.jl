@@ -9,7 +9,8 @@ import Base: hash, string,
     signbit, sign, copysign, flipsign, abs,
     (==),(!=),(<),(<=),(>=),(>),
     (+),(-),(*),(/),(\),(%),(^),
-    sqrt, hypot
+    sqrt, hypot,
+    log
 
 import Genera: Float, StdFloat
 
