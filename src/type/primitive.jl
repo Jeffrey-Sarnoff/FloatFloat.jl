@@ -39,3 +39,5 @@ one{T<:Real}(x::FloatFloat{T}) = one(FloatFloat{T})
 
 InfFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(Inf(T), Inf(T))
 NaNFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(NaN(T), NaN(T))
+InfFF{T<:Real}(x::FloatFloat{T}) = InfFF(FloatFloat{T})
+NaNFF{T<:Real}(x::FloatFloat{T}) = NaNFF(FloatFloat{T})
