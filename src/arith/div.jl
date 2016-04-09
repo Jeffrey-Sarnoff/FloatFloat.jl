@@ -9,7 +9,7 @@ function divpow2{T<:Real,I<:Integer}(a::FloatFloat{T}, powof2::I)
 end
 
 
-function recip{T<:Real}(b::FloatFloat{T})
+function inv{T<:Real}(b::FloatFloat{T})
   q1 = one(T) / b.hi
   r  = one(T) - (q1 * b)
 
