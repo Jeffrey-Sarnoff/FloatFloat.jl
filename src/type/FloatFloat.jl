@@ -32,25 +32,11 @@ for FT in (:Float64, :Float32, :Float16)
   end
 end  
 
-typealias IntRat     Union{Integer,Rational}
-typealias IntRatFlt  Union{Float64,Float32,Float16,Integer,Rational}
 
-# handle other reasonable inputs; allows e.g. FloatFloat(100,eps(100.0)/4)
-function FloatFloat{T1<:IntRatFlt, T2<:IntRat}(hi::T1, lo::T2)
-    a,b = promote(hi,lo)
-    if (isa(a, Integer) | isa(a, Rational))
-       FloatFloat(float(hi), float(lo))
-    else
-       FloatFloat(a,b)
-    end
-end    
 
 #  define explicit conversions for faster immutable type construction
 convert{T<:Real}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
 convert{T<:Real}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
-#  support generalized conversions over FloatFloat type parameter
-convert{T<:Real}(::Type{FloatFloat}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
-convert{T<:Real}(::Type{FloatFloat}, hi::T)        = FloatFloat{T}(hi, zero(T))
 
 
 const hash_ff_lo = (UInt === UInt64) ? 0x086540d7a5325bc3 : 0x5acda43c
