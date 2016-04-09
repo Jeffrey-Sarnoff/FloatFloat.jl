@@ -33,11 +33,7 @@ for FT in (:Float64, :Float32, :Float16)
 end  
 
 
-
-#  define explicit conversions for faster immutable type construction
-convert{T<:Real}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
-convert{T<:Real}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
-
+# hash function for the type
 
 const hash_ff_lo = (UInt === UInt64) ? 0x086540d7a5325bc3 : 0x5acda43c
 const hash_0_ff_lo = hash(zero(UInt), hash_ff_lo)
