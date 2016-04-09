@@ -21,8 +21,7 @@ export FloatFloat, FF, FF32, FF64, FF128,
     mulby2, divby2, mulpow2, divpow2, sqr,
     sqrt, log
 
-using Reexport
-@reexport using ErrorfreeArithmetic
+using ErrorfreeArithmetic
 
 # using AccurateArithmetic
 
