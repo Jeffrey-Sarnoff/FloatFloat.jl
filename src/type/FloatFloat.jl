@@ -8,8 +8,14 @@ end
 # matching an external constructor to the parameterized internal constructor is necessary
 FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo) # the RHS must be parameterized
 
-# augment external construction
+# more robust external construction
 FloatFloat{T<:Real}(hi::T) = FloatFloat(hi,zero(T)) # the RHS should not be parameterized
+
+#  define explicit conversions for faster immutable type construction
+convert{T<:Real}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
+convert{T<:Real}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
+
+# construct with more general numeric types
 
 for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),
                 (:Rational,:Integer),(:Rational,:Rational))
