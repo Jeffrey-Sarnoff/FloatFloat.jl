@@ -15,7 +15,7 @@ FloatFloat{T<:Real}(hi::T) = FloatFloat(hi,zero(T)) # the RHS should not be para
 convert{T<:Real}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
 convert{T<:Real}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
 
-# construct with more general numeric types
+# construction using other numeric types
 
 for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),
                 (:Rational,:Integer),(:Rational,:Rational))
@@ -39,8 +39,7 @@ for FT in (:Float64, :Float32, :Float16)
 end  
 
 
-# hash function for the type
-
+# a type specific hash function helps the type to 'just work'
 const hash_ff_lo = (UInt === UInt64) ? 0x086540d7a5325bc3 : 0x5acda43c
 const hash_0_ff_lo = hash(zero(UInt), hash_ff_lo)
 hash{T<:Real}(z::FloatFloat{T}, h::UInt) = 
