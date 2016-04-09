@@ -9,7 +9,7 @@ import Base: hash, string,
     signbit, sign, copysign, flipsign, abs,
     (==),(!=),(<),(<=),(>=),(>),
     (+),(-),(*),(/),(\),(%),(^),
-    sqrt, hypot,
+    inv, sqrt, hypot,
     log
 
 import Genera: Float, StdFloat
@@ -18,7 +18,7 @@ export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
     hash,
     NaNFF, InfFF,
-    mulby2, divby2, mulpow2, divpow2, recip, sqr,
+    mulby2, divby2, mulpow2, divpow2, sqr,
     sqrt, log
 
 using Reexport
