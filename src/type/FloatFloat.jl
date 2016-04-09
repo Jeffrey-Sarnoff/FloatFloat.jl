@@ -6,11 +6,13 @@ immutable FloatFloat{T<:Real} <: Real
 end
 
 # matching an external constructor to the parameterized internal constructor is necessary
-FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo)
-# augment external construction
-FloatFloat{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
+FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo) # the RHS must be parameterized
 
-for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),(:Rational,:Integer),(:Rational,:Rational))
+# augment external construction
+FloatFloat{T<:Real}(hi::T) = FloatFloat(hi,zero(T)) # the RHS should not be parameterized
+
+for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),
+                (:Rational,:Integer),(:Rational,:Rational))
   @eval begin
     function FloatFloat(hi::($T1), lo::($T2))
         a,b = promote(hi,lo)
