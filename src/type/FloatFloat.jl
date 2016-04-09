@@ -11,7 +11,7 @@ FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo)
 
 FloatFloat{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
 # handle other reasonable inputs; allows e.g. FloatFloat(100,eps(100.0)/4)
-function FloatFloat{T1<:Real, T2<:Real}(hi::T1, lo::T2)
+function FloatFloat(hi::Real, lo::Real)
     a,b = promote(hi,lo)
     if (isa(a, Integer) | isa(a, Rational))
        FloatFloat(float(hi), float(lo))
