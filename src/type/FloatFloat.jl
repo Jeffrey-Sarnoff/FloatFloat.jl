@@ -10,6 +10,26 @@ FloatFloat{T<:Real}(hi::T, lo::T) = FloatFloat{T}(hi,lo)
 # augment external construction
 FloatFloat{T<:Real}(hi::T) = FloatFloat{T}(hi,zero(T))
 
+for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),(:Rational,:Integer),(:Rational,:Rational))
+  @eval begin
+    function FloatFloat(hi::($T1), lo::($T2))
+        a,b = promote(hi,lo)
+        FloatFloat(AbstractFloat(a), AbstractFloat(b))
+    end
+  end
+end  
+
+for FT in (:Float64, :Float32, :Float16)
+  for (T1,T2) in ((:Integer,FT),(FT,:Integer),(:Rational,FT),(FT,:Rational))
+    @eval begin
+      function FloatFloat(hi::($T1), lo::($T2))
+        a,b = promote(hi,lo)
+        FloatFloat(AbstractFloat(a), AbstractFloat(b))
+      end    
+    end
+  end
+end  
+
 typealias IntRat     Union{Integer,Rational}
 typealias IntRatFlt  Union{Float64,Float32,Float16,Integer,Rational}
 
