@@ -12,7 +12,7 @@ import Base: hash, string,
     inv, sqrt, hypot,
     log
 
-import Genera: Float, StdFloat
+import Genera: StdFloat, SysFloat
 
 export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
