@@ -35,6 +35,12 @@ one{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(one(T), zero(T))
 zero{T<:Real}(x::FloatFloat{T}) = zero(FloatFloat{T})
 one{T<:Real}(x::FloatFloat{T}) = one(FloatFloat{T})
 
+# epsilon -- These functions return values of type T, not type FloatFloat{T}
+
+eps{T<:Real}(x::FloatFloat{T}) = eps( ifelse(x.lo == zero(T), x.hi, x.lo) )
+ulp{T<:Real}(x::FloatFloat{T}) = eps( x ) * 0.5
+
+
 # Inf, NaN
 
 InfFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(Inf(T), Inf(T))
