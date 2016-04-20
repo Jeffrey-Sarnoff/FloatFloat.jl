@@ -3,7 +3,7 @@ module FloatFloats
 import Base: hash, string, 
     show, showcompact, showall,
     convert, promote_rule,
-    zero, one, ldexp, frexp,
+    zero, one, ldexp, frexp, eps,
     isnan, isinf, isfinite, issubnormal,
     isequal, isless,
     signbit, sign, copysign, flipsign, abs,
