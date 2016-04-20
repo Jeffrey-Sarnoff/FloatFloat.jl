@@ -19,7 +19,7 @@ function inv{T<:Real}(b::FloatFloat{T})
   q3 = r.hi / b.hi
 
   q1,q2 = eftAddGTE(q1, q2)
-  q1,q2 = eftAdd3to2(q1,q2,q3)
+  q1,q2 = eftAddAs2(q1,q2,q3)
   FloatFloat(q1,q2)
 end
 
@@ -33,7 +33,7 @@ function (/){T<:Real}(a::FloatFloat{T}, b::FloatFloat{T})
   q3 = r.hi / b.hi
 
   q1,q2 = eftAddGTE(q1, q2)
-  q1,q2 = eftAdd3to2(q1,q2,q3)
+  q1,q2 = eftAddAs2(q1,q2,q3)
   
   FloatFloat(q1,q2)
 end
@@ -48,7 +48,7 @@ function (/){T<:Real}(a::FloatFloat{T}, b::T)
   q3 = r.hi / b
 
   q1,q2 = eftAddGTE(q1, q2)
-  q1,q2 = eftAdd3to2(q1,q2,q3)
+  q1,q2 = eftAddAs2(q1,q2,q3)
   
   FloatFloat(q1,q2)
 end
@@ -63,7 +63,7 @@ function (/){T<:Real}(a::T, b::FloatFloat{T})
   q3 = r.hi / b.hi
 
   q1,q2 = eftAddGTE(q1, q2)
-  q1,q2 = eftAdd3to2(q1,q2,q3)
+  q1,q2 = eftAddAs2(q1,q2,q3)
   
   FloatFloat(q1,q2)
 end
