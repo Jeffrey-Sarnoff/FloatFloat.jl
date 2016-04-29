@@ -12,7 +12,6 @@ import Base: hash, string,
     inv, sqrt, hypot,
     log
 
-import Genera: StdFloat, SysFloat
 
 export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
@@ -21,6 +20,8 @@ export FloatFloat, FF, FF32, FF64, FF128,
     mulby2, divby2, mulpow2, divpow2, sqr,
     sqrt, log
 
+using Polynomials
+using Genera
 using ErrorfreeArithmetic
 
 # using AccurateArithmetic
