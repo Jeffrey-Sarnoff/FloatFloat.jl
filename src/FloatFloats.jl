@@ -5,7 +5,7 @@ import Base: hash, string,
     convert, promote_rule,
     zero, one, ldexp, frexp, eps,
     isnan, isinf, isfinite, issubnormal,
-    isequal, isless,
+    isequal, isless, min, max, minmax,
     signbit, sign, copysign, flipsign, abs,
     (==),(!=),(<),(<=),(>=),(>),
     (+),(-),(*),(/),(\),(%),(^),
@@ -16,7 +16,7 @@ import Genera: StdFloat, SysFloat
 
 export FloatFloat, FF, FF32, FF64, FF128,
     iszero, isnonzero, ispos, isneg, isnonneg,
-    hash,
+    hash, maxmin,
     ulp, NaNFF, InfFF,
     mulby2, divby2, mulpow2, divpow2, sqr,
     sqrt, log
@@ -30,6 +30,7 @@ include("type/FF.jl")
 include("type/primitive.jl")
 include("type/predicates.jl")
 include("type/convert.jl")
+include("type/compare.jl")
 include("type/io.jl")
 
 include("arith/addsub.jl")
