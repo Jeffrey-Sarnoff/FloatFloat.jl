@@ -38,4 +38,6 @@ include("arith/mul.jl")
 include("arith/div.jl")
 include("arith/sqrt.jl")
 
+include("math/exp.jl")
+
 end # module
