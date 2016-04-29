@@ -51,6 +51,11 @@ function convert{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, x::BigFloat)
     FloatFloat{FloatFloat{T}}(hi,lo)
 end
 
+
+promote_rule{T<:Real}(::Type{T}, ::Type{FloatFloat{T}}) = FloatFloat{T}
+promote_rule{T<:Real,R<:Real}(::Type{R}, ::Type{FloatFloat{T}}) = FloatFloat{T}
+promote_rule{T<:Real,I<:Integer}(::Type{I}, ::Type{FloatFloat{T}}) = FloatFloat{T}
+
 promote_rule{T<:Real}(::Type{BigFloat}, ::Type{FloatFloat{T}}) = FloatFloat{T}
 
 promote_rule{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, ::Type{FloatFloat{T}}) = 
