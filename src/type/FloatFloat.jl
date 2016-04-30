@@ -9,7 +9,7 @@ end
 FloatFloat{T<:SysFloat}(hi::T, lo::T) = FloatFloat{T}(hi,lo) # the RHS must be parameterized
 
 # more robust external construction
-FloatFloat{T<:SysFloat}(hi::T) = FloatFloat(hi,zero(T)) # the RHS should not be parameterized
+FloatFloat{T<:SysFloat}(hi::T) = FloatFloat(hi,zero(T)) # RHS should not be parameterized
 
 #  define explicit conversions for faster immutable type construction
 convert{T<:SysFloat}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
