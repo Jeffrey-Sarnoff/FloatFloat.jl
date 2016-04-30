@@ -32,7 +32,7 @@ function convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::BigFloat)
 end
 
 function convert{T1<:Integer, T2<:SysFloat}(::Type{Rational{T1}}, x::FloatFloat{T2})
-   br = convert(Rational{BigInt},x.hi) + convert(Rational{BigInt,x.lo))
+   br = convert(Rational{BigInt},x.hi) + convert(Rational{BigInt},x.lo)
    convert(Rational{T1}, br)
 end
 
