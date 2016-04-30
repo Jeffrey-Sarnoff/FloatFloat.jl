@@ -1,5 +1,3 @@
-
-
 function convert{T<:SysFloat}(::Type{BigFloat}, x::FloatFloat{T})
    hi = BigFloat(x.hi)
    lo = BigFloat(x.lo)
