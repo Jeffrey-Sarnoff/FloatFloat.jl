@@ -59,3 +59,26 @@ promote_rule{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, ::Type{FloatFloat{T}}) 
 
 promote_rule{T<:Real}(::Type{FloatFloat{FloatFloat{T}}}, ::Type{BigFloat}) = BigFloat
     
+
+
+
+for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),
+                (:Rational,:Integer),(:Rational,:Rational))
+  @eval begin
+    function FloatFloat(hi::($T1), lo::($T2))
+        a,b = promote(hi,lo)
+        FloatFloat(AbstractFloat(a), AbstractFloat(b))
+    end
+  end
+end  
+
+for T in (:Float64, :Float32)
+  for (T1,T2) in ((:Integer,T),(T,:Integer),(:Rational,T),(T,:Rational))
+    @eval begin
+      function FloatFloat(hi::($T1), lo::($T2))
+        a,b = promote(hi,lo)
+        FloatFloat(AbstractFloat(a), AbstractFloat(b))
+      end    
+    end
+  end
+end  
