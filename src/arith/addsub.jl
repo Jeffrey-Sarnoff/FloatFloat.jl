@@ -20,11 +20,12 @@ function (+){T<:SysFloat}(a::FloatFloat{T},b::T)
 end
 
 (+){T<:SysFloat}(a::T, b::FloatFloat{T}) = (+)(b,a)
-(+){T<:SysFloat}(a::FloatFloat{T}, b::Signed) = (+)(a,convert(T,b))
-(+){T<:SysFloat}(a::Signed, b::FloatFloat{T}) = (+)(b,a)
 
-(+){T<:SysFloat}(a::Real, b::FloatFloat{T}) = (+)(convert(T,a), b)
-(+){T<:SysFloat}(a::FloatFloat{T}, b::Real) = (+)(a, convert(T,b))
+(+){T<:SysFloat,S<:Signed}(a::FloatFloat{T}, b::S) = (+)(a, convert(T,b))
+(+){T<:SysFloat,S<:Signed}(a::S, b::FloatFloat{T}) = (+)(convert(T,a), b)
+
+(+){T<:SysFloat,R<:Real}(a::R, b::FloatFloat{T}) = (+)(convert(T,a), b)
+(+){T<:SysFloat,R<:Real}(a::FloatFloat{T}, b::R) = (+)(a, convert(T,b))
 
 #=
 function (+){T<:Real}(a::FloatFloat{FloatFloat{T}}, b::FloatFloat{FloatFloat{T}})
@@ -62,8 +63,8 @@ function (-){T<:SysFloat}(a::T, b::FloatFloat{T})
     FloatFloat{T}(s1,s2)
 end
 
-(-){T<:SysFloat}(a::FloatFloat{T}, b::Signed) = (-)(a, convert(T,b))
-(-){T<:SysFloat}(a::Signed, b::FloatFloat{T}) = (-)(convert(T,a), b)
+(-){T<:SysFloat,S<:Signed}(a::FloatFloat{T}, b::S) = (-)(a, convert(T,b))
+(-){T<:SysFloat,S<:Signed}(a::S, b::FloatFloat{T}) = (-)(convert(T,a), b)
 
-(-){T<:SysFloat}(a::Real, b::FloatFloat{T}) = (-)(convert(T,a), b)
-(-){T<:SysFloat}(a::FloatFloat{T}, b::Real) = (-)(a, convert(T,b))
+(-){T<:SysFloat,R<:Real}(a::R, b::FloatFloat{T}) = (-)(convert(T,a), b)
+(-){T<:SysFloat,R<:Real}(a::FloatFloat{T}, b::R) = (-)(a, convert(T,b))
