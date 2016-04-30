@@ -43,5 +43,6 @@ include("arith/div.jl")
 include("arith/sqrt.jl")
 
 include("math/exp.jl")
+include("math/log.jl")
 
 end # module
