@@ -24,12 +24,18 @@ convert(::Type{Float32}, ff::FloatFloat{Float64})  = convert(Float32,ff.hi)
 convert(::Type{FloatFloat{Float64}}, x::FloatFloat{Float32}) = 
   FloatFloat{Float64}(x.hi) + FloatFloat{Float64}(x.lo)
 
-
 # foundational promotions
 promote_rule{T<:SysFloat,S<:StdFloat}(::Type{FloatFloat{T}}, ::Type{S}) = FloatFloat{T}
 promote_rule{T<:SysFloat,S<:StdInt}(::Type{FloatFloat{T}}, ::Type{S}) = FloatFloat{T}
 promote_rule{T<:SysFloat,S<:StdFloat}(::Type{FloatFloat{T}}, ::Type{Rational{S}}) = FloatFloat{T}
 promote_rule(::Type{FloatFloat{Float64}}, ::Type{FloatFloat{Float32}}) = FloatFloat{Float64}
+
+
+# type definition related
+hi{T<:SysFloat}(x::FloatFloat{T}) = x.hi
+lo{T<:SysFloat}(x::FloatFloat{T}) = x.lo
+eltype{T<:SysFloat}(x::FloatFloat{T}) = T
+
 
 
 # a type specific hash function helps the type to 'just work'
