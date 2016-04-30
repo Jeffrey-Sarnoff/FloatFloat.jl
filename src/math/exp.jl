@@ -1069,7 +1069,8 @@ function exp(x::FloatFloat{Float64})
     fracpart = (fracpart512 - n512ths)/512
     ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
     frac   = polyval(exp0_1o512_poly, fracpart)
-    rest   = exp_0to512[ 1+trunc(Int,intpart) ]
+    idx    =  1+trunc(Int,intpart)
+    rest   = idx <= 513 ? exp_0to512[idx] : throw(DomainError())
     rest   = rest * ths512
     rest   = rest * frac
     isneg ? inv(rest) : rest
