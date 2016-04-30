@@ -1,3 +1,11 @@
+# ambiguity resolution
+convert{T<:SysFloat}(::Type{Bool}, x::FloatFloat{T}) = (x.hi != zero(T))
+convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::Bool) = x ? one(FloatFloat{T}) : zero(FloatFloat{T})
+
+  
+
+
+#
 function convert{T<:SysFloat}(::Type{BigFloat}, x::FloatFloat{T})
    hi = BigFloat(x.hi)
    lo = BigFloat(x.lo)
