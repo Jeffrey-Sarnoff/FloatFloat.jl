@@ -29,6 +29,6 @@ promote_rule(::Type{FloatFloat{Float64}}, ::Type{FloatFloat{Float32}}) = FloatFl
 
 # a type specific hash function helps the type to 'just work'
 const hash_floatfloat_lo = (UInt === UInt64) ? 0x086540d7a5325bc3 : 0x5acda43c
-const hash_0_floatfloat_lo = hash(zero(UInt), hash_ff_lo)
+const hash_0_floatfloat_lo = hash(zero(UInt), hash_floatfloat_lo)
 hash{T<:Real}(z::FloatFloat{T}, h::UInt) = 
     hash(z.hi, (h $ hash(z.lo, hash_floatfloat_lo) $ hash_0_floatfloat_lo))
