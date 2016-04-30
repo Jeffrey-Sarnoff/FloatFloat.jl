@@ -23,6 +23,7 @@ export FloatFloat, FF, FF32, FF64, FF128,
 using Polynomials
 using Genera
 using ErrorfreeArithmetic
+using FloatSafeInts
 
 # using AccurateArithmetic
 
