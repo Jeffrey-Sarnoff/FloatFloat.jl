@@ -1066,7 +1066,7 @@ function exp(x::FloatFloat{Float64})
     fracpart, intpart = modf(x)
     fracpart512 = fracpart * 512
     n512ths = trunc(Float64,fracpart512)
-    fracpart = (fracpart512 - n512ths)/512
+    fracpart = (fracpart512 - n512ths) * 0.001953125 # 1/512
     ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
     frac   = polyval(exp0_1o512_poly, fracpart)
     idx    =  1+trunc(Int,intpart)
