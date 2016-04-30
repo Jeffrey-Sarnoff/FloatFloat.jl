@@ -10,6 +10,10 @@ convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::Integer) =
    convert(FloatFloat{T}, convert(BigFloat,convert(BigInt,x)))
 convert{T<:SysFloat}(::Type{Integer}, x::FloatFloat{T}) =  
    convert(Int64,convert(BigFloat,x))
+convert{T1<:SysFloat, T2<:SysFloat}(::Type{FloatFloat{T1}}, x::FloatFloat{T2}) =
+   FloatFloat{T1}((T1)(x.hi)) + FloatFloat{T1}((T1)(x.lo))
+
+   
 #
 function convert{T<:SysFloat}(::Type{BigFloat}, x::FloatFloat{T})
    hi = BigFloat(x.hi)
