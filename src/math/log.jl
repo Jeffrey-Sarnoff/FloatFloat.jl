@@ -1,7 +1,15 @@
 
+
+function log(a::FloatFloat{Float64})
+    hi = FloatFloat{Float64}(log(a.hi))
+    lo = log1p(a.lo/a.hi)
+    hi + lo
+end
+
+# prior
 const FF64_log2 = FloatFloat{Float64}(0.6931471805588453, 2.3190468138462996e-17)
 
-function log(x::FloatFloat{Float64})
+function logA(x::FloatFloat{Float64})
 
     y = x / FF64_log2
     iy = trunc(Int64,y.hi)
