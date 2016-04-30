@@ -46,14 +46,16 @@ end
 function modf{T<:SysFloat}(a::FloatFloat{T})
    fhi, ihi = modf(a.hi)
    flo, ilo = modf(a.lo)
-   f = FloatFloat{T}(fhi)+FloatFloat{T}(flo)
-   i = FloatFloat{T}(ihi)+FloatFloat{T}(ilo)
-   f,i
+   fhi+flo, ihi+ilo
 end
 
 function fmod{T<:SysFloat}(fracpart::FloatFloat{T}, intpart::FloatFloat{T})
    intpart + fracpart
 end
+function fmod{T<:SysFloat}(fracpart::T, intpart::T)
+   FloatFloat{T}(intpart) + FloatFloat{T}(fracpart)
+end
+
 
 # zero, one
 
