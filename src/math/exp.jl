@@ -18,8 +18,9 @@ const exp0_1o512_coeffs = FloatFloat{Float64}[
 
 const exp0_1o512_poly = Poly(exp0_1o512_coeffs)
 
-# exp_1to512[100] = exp(100) as FloatFloat{Float64}
-const exp_1to512 = FloatFloat{Float64}[
+# exp_0to512[100+1] = exp(100) as FloatFloat{Float64}
+const exp_0to512 = FloatFloat{Float64}[
+    FF(1.0, 0.0),
     FF(2.718281828459045, 1.4456468917292502e-16),
     FF(7.38905609893065, -1.7971139497839148e-16),
     FF(20.085536923187668, -1.8275625525512858e-16),
@@ -1062,4 +1063,12 @@ exp_over512 = FloatFloat{Float64}[
 function exp(x::FloatFloat{Float64})
     isneg = signbit(x)
     x = abs(x)
+    fracpart, intpart = modf(x)
+    fracpart512 = fracpart * 512
+    n512ths = trunc(fracpart512)
+    fracpart = (fracpart512 - n512ths)/512
+    ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
+    frac   = polyval(exp0_1o512_poly, fracpart)
+    rest   = exp_0to512[ 1+trunc(Int,intpart) ]
+    rest * ths512 * frac
 end    
