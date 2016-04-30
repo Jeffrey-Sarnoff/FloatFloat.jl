@@ -20,6 +20,11 @@ convert{T<:SysFloat}(::Type{T}, ff::FloatFloat{T}) = ff.hi
 convert(::Type{Float64}, ff::FloatFloat{Float32})  = convert(Float64,ff.hi)
 convert(::Type{Float32}, ff::FloatFloat{Float64})  = convert(Float32,ff.hi)
 
+# define interconversion
+convert(::Type{FloatFloat{Float64}}, x::FloatFloat{Float32}) = 
+  FloatFloat{Float64}(x.hi) + FloatFloat{Float64}(x.lo)
+
+
 # foundational promotions
 promote_rule{T<:SysFloat,S<:StdFloat}(::Type{FloatFloat{T}}, ::Type{S}) = FloatFloat{T}
 promote_rule{T<:SysFloat,S<:StdInt}(::Type{FloatFloat{T}}, ::Type{S}) = FloatFloat{T}
