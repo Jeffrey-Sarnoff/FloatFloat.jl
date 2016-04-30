@@ -21,6 +21,9 @@ end
 
 (+){T<:SysFloat}(a::T, b::FloatFloat{T}) = (+)(b,a)
 
+(+){T<:SysFloat}(a::FloatFloat{T}, b::Bool) = (+)(a, convert(T,b))
+(+){T<:SysFloat}(a::Bool, b::FloatFloat{T}) = (+)(convert(T,a), b)
+
 (+){T<:SysFloat,S<:Signed}(a::FloatFloat{T}, b::S) = (+)(a, convert(T,b))
 (+){T<:SysFloat,S<:Signed}(a::S, b::FloatFloat{T}) = (+)(convert(T,a), b)
 
@@ -62,6 +65,9 @@ function (-){T<:SysFloat}(a::T, b::FloatFloat{T})
     s1, s2 = eftAddGTE(s1,s2)
     FloatFloat{T}(s1,s2)
 end
+
+(-){T<:SysFloat}(a::FloatFloat{T}, b::Bool) = (-)(a, convert(T,b))
+(-){T<:SysFloat}(a::Bool, b::FloatFloat{T}) = (-)(convert(T,a), b)
 
 (-){T<:SysFloat,S<:Signed}(a::FloatFloat{T}, b::S) = (-)(a, convert(T,b))
 (-){T<:SysFloat,S<:Signed}(a::S, b::FloatFloat{T}) = (-)(convert(T,a), b)
