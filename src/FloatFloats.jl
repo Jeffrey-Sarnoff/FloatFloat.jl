@@ -2,7 +2,7 @@ module FloatFloats
 
 import Base: hash, string, 
     show, showcompact, showall,
-    convert, promote_rule,
+    convert, promote_rule, eltype,
     zero, one, ldexp, frexp, eps,
     isnan, isinf, isfinite, issubnormal,
     isequal, isless, min, max, minmax,
