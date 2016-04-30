@@ -15,7 +15,7 @@ copysign{T1<:SysFloat,T2<:Real}(a::FloatFloat{T1}, b::T2) = ifelse(signbit(b), -
 
 
 #=
-    frexp, ldexp, zero, one
+    frexp, ldexp
 =#
 
 function frexp{T<:SysFloat}(a::FloatFloat{T})
@@ -29,6 +29,24 @@ function ldexp{T<:SysFloat}(a::FloatFloat{T},xp::Int)
 end
 ldexp{T<:SysFloat,I<:Integer}(fx::Tuple{FloatFloat{T},I}) = ldexp(fx...)
 
+
+#=
+    modf, fmod
+=#
+
+function modf{T<:SysFloat}(a::FloatFloat{T})
+   fhi, ihi = modf(a.hi)
+   flo, ilo = modf(a.lo)
+   f = FloatFloat{T}(fhi)+FloatFloat{T}(flo)
+   i = FloatFloat{T}(ihi)+FloatFloat{T}(ilo)
+   f,i
+end
+
+function fmod{T<:SysFloat}(fracpart::FloatFloat{T}, intpart::FloatFloat{T})
+   intpart + fracpart
+end
+
+# zero, one
 
 zero{T<:SysFloat}(::Type{FloatFloat{T}}) = FloatFloat(zero(T), zero(T))
 one{T<:SysFloat}(::Type{FloatFloat{T}}) = FloatFloat(one(T), zero(T))
