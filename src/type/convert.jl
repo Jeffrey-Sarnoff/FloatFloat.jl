@@ -1,9 +1,5 @@
 
 #  define explicit conversions for faster immutable type construction
-convert{T<:Real}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
-convert{T<:Real}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
-
-convert{T<:Real}(::Type{FloatFloat{T}}, x::T) = FloatFloat{T}(x,zero(T))
 convert{T<:Real}(::Type{T}, x::FloatFloat{T}) = x.hi
 
 convert{T<:Real}(::Type{FloatFloat{T}}, x::Real) = FloatFloat{T}(convert(T,x),zero(T))
