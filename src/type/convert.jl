@@ -7,6 +7,12 @@ convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::Integer) =
 convert{T<:SysFloat}(::Type{Integer}, x::FloatFloat{T}) =  
    x.lo==zero(T) ? convert(Int64,convert(BigFloat,x)) : throw(InexactError())
 
+convert{I<:Integer}(::Type{FloatFloat},x::I) = convert(FloatFloat{Float64}, x)
+convert{I<:Integer}(::Type{FloatFloat},x::Rational{I}) = convert(FloatFloat{Float64}, x)
+convert{F<:AbstractFloat}(::Type{FloatFloat},x::F) = convert(FloatFloat{Float64}, x)
+convert{R<:Real}(::Type{FloatFloat},x::R) = convert(FloatFloat{Float64}, x)
+
+
 #=
 convert{T<:SysFloat,I<:Integer}(::Type{FloatFloat{T}}, x::I) =
    convert(FloatFloat{T}, convert(BigFloat,convert(BigInt,x)))
