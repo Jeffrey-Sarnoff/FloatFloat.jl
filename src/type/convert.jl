@@ -2,8 +2,11 @@
 convert{T<:SysFloat}(::Type{Bool}, x::FloatFloat{T}) = (x.hi != zero(T))
 convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::Bool) = x ? one(FloatFloat{T}) : zero(FloatFloat{T})
 
+convert{T<:SysFloat,I<:Integer}(Type{FloatFloat{T}}, x::I) =
+   convert(FloatFloat{T}, convert(BigFloat,convert(BigInt,x)))
+convert{T<:SysFloat,I<:Integer}(Type{I}, x::FloatFloat{T}) =
+   convert(I, convert(BigInt,convert(BigFloat,x)))
   
-
 
 #
 function convert{T<:SysFloat}(::Type{BigFloat}, x::FloatFloat{T})
