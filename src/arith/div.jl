@@ -68,5 +68,8 @@ function (/){T<:SysFloat}(a::T, b::FloatFloat{T})
   FloatFloat(q1,q2)
 end
 
-(/){T1<:SysFloat, T2<:Real}(a::FloatFloat{T1}, b::T2) = (/)(a, convert(T1,b))
-(/){T1<:Real, T2<:SysFloat}(a::T1, b::FloatFloat{T2}) = (/)(convert(T2,a), b)
+(/){T<:SysFloat,S<:Signed}(a::FloatFloat{T}, b::T) = (/)(a, convert(T1,b))
+(/){T<:SysFloat,S<:Signed}(a::S, b::FloatFloat{T}) = (/)(convert(T2,a), b)
+
+(/){T<:SysFloat,R<:Real}(a::FloatFloat{T}, b::R) = (/)(a, convert(T1,b))
+(/){T<:SysFloat,R<:Real}(a::R, b::FloatFloat{T}) = (/)(convert(T2,a), b)
