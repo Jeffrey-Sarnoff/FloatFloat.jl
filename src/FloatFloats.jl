@@ -30,6 +30,7 @@ using FloatSafeInts
 include("type/FloatFloat.jl")
 include("type/convert.jl")
 #include("type/FF.jl")
+#=
 include("type/primitive.jl")
 include("type/predicates.jl")
 include("type/compare.jl")
@@ -39,7 +40,7 @@ include("arith/addsub.jl")
 include("arith/mul.jl")
 include("arith/div.jl")
 include("arith/sqrt.jl")
-
+=#
 #include("math/exp.jl")
 
 end # module
