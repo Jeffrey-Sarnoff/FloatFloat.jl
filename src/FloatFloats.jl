@@ -28,10 +28,10 @@ using FloatSafeInts
 # using AccurateArithmetic
 
 include("type/FloatFloat.jl")
+include("type/convert.jl")
 include("type/FF.jl")
 include("type/primitive.jl")
 include("type/predicates.jl")
-include("type/convert.jl")
 include("type/compare.jl")
 include("type/io.jl")
 
