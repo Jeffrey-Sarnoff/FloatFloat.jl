@@ -35,7 +35,7 @@ ldexp{T<:SysFloat,I<:Integer}(fx::Tuple{FloatFloat{T},I}) = ldexp(fx...)
 =#
 
 function trunc{T<:SysFloat}(a::FloatFloat{T})
-   FloatFloat{T}(trunc(a.hi)+(trunc(a.lo))
+   FloatFloat{T}(trunc(a.hi),trunc(a.lo))
 end
 function trunc{T<:SysFloat}(::Type{T}, a::FloatFloat{T})
    trunc(a.hi + a.lo)
