@@ -23,14 +23,6 @@ function convert{T1<:SysFloat, T2<:Real}(::Type{FloatFloat{T1}}, x::T2)
 end
 
 
-
-function convert{T<:SysFloat}(::Type{BigFloat}, x::FloatFloat{FloatFloat{T}})
-   hi = BigFloat(x.hi)
-   lo = BigFloat(x.lo)
-   hi + lo
-end
-
-
 function convert{T<:SysFloat}(::Type{FloatFloat{FloatFloat{T}}}, x::BigFloat)
     hi = convert(FloatFloat{T}, x)
     y  = x - convert(BigFloat, hi)
@@ -47,6 +39,12 @@ promote_rule{T<:SysFloat}(::Type{BigFloat}, ::Type{FloatFloat{T}}) = FloatFloat{
 
 promote_rule{T<:SysFloat}(::Type{FloatFloat{FloatFloat{T}}}, ::Type{FloatFloat{T}}) = 
     FloatFloat{FloatFloat{T}}
+
+function convert{T<:SysFloat}(::Type{BigFloat}, x::FloatFloat{FloatFloat{T}})
+   hi = BigFloat(x.hi)
+   lo = BigFloat(x.lo)
+   hi + lo
+end
 
 promote_rule{T<:SysFloat}(::Type{FloatFloat{FloatFloat{T}}}, ::Type{BigFloat}) = BigFloat
 =#    
