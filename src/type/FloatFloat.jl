@@ -11,32 +11,20 @@ FloatFloat{T<:SysFloat}(hi::T, lo::T) = FloatFloat{T}(hi,lo) # the RHS must be p
 # more robust external construction
 FloatFloat{T<:SysFloat}(hi::T) = FloatFloat(hi,zero(T)) # RHS should not be parameterized
 
-#  define explicit conversions for faster immutable type construction
+# define explicit conversions for faster immutable type construction
 convert{T<:SysFloat}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
 convert{T<:SysFloat}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
 
-# construction using other numeric types
+# define complementary conversions
+convert{T<:SysFloat}(::Type{T}, ff::FloatFloat{T}) = ff.hi
+convert(::Type{Float64}, ff::FloatFloat{Float32})  = convert(Float64,ff.hi)
+convert(::Type{Float32}, ff::FloatFloat{Float64})  = convert(Float32,ff.hi)
 
-for (T1,T2) in ((:Integer,:Integer),(:Integer,:Rational),
-                (:Rational,:Integer),(:Rational,:Rational))
-  @eval begin
-    function FloatFloat(hi::($T1), lo::($T2))
-        a,b = promote(hi,lo)
-        FloatFloat(AbstractFloat(a), AbstractFloat(b))
-    end
-  end
-end  
-
-for T in (:Float64, :Float32)
-  for (T1,T2) in ((:Integer,T),(T,:Integer),(:Rational,T),(T,:Rational))
-    @eval begin
-      function FloatFloat(hi::($T1), lo::($T2))
-        a,b = promote(hi,lo)
-        FloatFloat(AbstractFloat(a), AbstractFloat(b))
-      end    
-    end
-  end
-end  
+# foundational promotions
+promote_rule{T<:SysFloat,S<:StdFloat}(::Type{FloatFloat{T}}, ::Type{S}) = FloatFloat{T}
+promote_rule{T<:SysFloat,S<:StdInt}(::Type{FloatFloat{T}}, ::Type{S}) = FloatFloat{T}
+promote_rule{T<:SysFloat,S<:StdFloat}(::Type{FloatFloat{T}}, ::Type{Rational{S}}) = FloatFloat{T}
+promote_rule(::Type{FloatFloat{Float64}}, ::Type{FloatFloat{Float32}}) = FloatFloat{Float64}
 
 
 # a type specific hash function helps the type to 'just work'
