@@ -8,6 +8,7 @@ import Base: hash, string,
     isequal, isless, min, max, minmax,
     signbit, sign, copysign, flipsign, abs,
     (==),(!=),(<),(<=),(>=),(>),
+    trunc,
     (+),(-),(*),(/),(\),(%),(^),
     inv, sqrt, hypot,
     log, exp
