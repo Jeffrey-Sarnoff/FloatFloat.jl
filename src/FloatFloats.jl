@@ -13,7 +13,7 @@ import Base: hash, string,
     log
 
 
-export FloatFloat, FF, FF64, FF128,
+export FloatFloat, FF, FF64, FF128, hi, lo,
     iszero, isnonzero, ispos, isneg, isnonneg,
     hash, maxmin,
     ulp, NaNFF, InfFF,
