@@ -1075,3 +1075,5 @@ function exp(x::FloatFloat{Float64})
     rest   = rest * frac
     isneg ? inv(rest) : rest
 end    
+
+exp(x::FloatFloat{Float32}) = convert(FloatFloat{Float32}, exp(FloatFloat{Float64}(x)))
