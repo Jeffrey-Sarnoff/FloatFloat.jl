@@ -1072,7 +1072,7 @@ function exp(x::FloatFloat{Float64})
     rest   = exp_0to512[ 1+trunc(Int,intpart) ]
     rest   = rest * ths512
     rest   = rest * frac
-    isneg ? inv (rest) : rest
+    isneg ? inv(rest) : rest
 end    
 
 
