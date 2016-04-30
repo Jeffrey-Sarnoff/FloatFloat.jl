@@ -16,15 +16,7 @@ const exp0_1o512_coeffs = FloatFloat{Float64}[
     FF(2.758562251947967e-7, -1.7620011695933446e-23)
 ];
 
-const exp0_1o256_poly = Poly(exp0_1o512_coeffs)
-
-
-
-
-
-
-
-
+const exp0_1o512_poly = Poly(exp0_1o512_coeffs)
 
 # exp_1to512[100] = exp(100) as FloatFloat{Float64}
 const exp_1to512 = FloatFloat{Float64}[
