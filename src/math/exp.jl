@@ -533,3 +533,8 @@ const exp_1to512 = FloatFloat{Float64}[
     FF(8.403887936206959e221, 5.055404424380672e205),
     FF(2.2844135865397565e222, 1.3549224944023444e206)
 ];
+
+function exp(x::FloatFloat{Float64})
+    isneg = signbit(x)
+    x = abs(x)
+end    
