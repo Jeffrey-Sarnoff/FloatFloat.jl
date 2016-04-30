@@ -6,11 +6,13 @@ function FF{T<:SysFloat}(hi::T, lo::T)
   low = (hi - (high - t)) + (lo - t)
   FloatFloat(high,low)
 end
+
 FF{T<:SysFloat}(hi::T) = FloatFloat{T}(hi,zero(T))
 function FF{T1<:SysFloat, T2<:SysFloat}(hi::T1, lo::T2)
     a,b = promote(hi,lo)
     FF(a,b)
 end    
+
 FF{F<:SysFloat, I<:Integer}(hi::F, lo::I) = FF(promote(hi,lo)...)
 FF{F<:SysFloat, I<:Integer}(hi::I, lo::F) = FF(promote(hi,lo)...)
 FF{I1<:Integer, I2<:Integer}(hi::I1, lo::I2) = FF(promote(float(hi),float(lo))...)
