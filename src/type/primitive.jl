@@ -31,8 +31,17 @@ ldexp{T<:SysFloat,I<:Integer}(fx::Tuple{FloatFloat{T},I}) = ldexp(fx...)
 
 
 #=
-    modf, fmod
+    trunc, modf, fmod
 =#
+
+function trunc{T<:SysFloat}(a::FloatFloat{T})
+   FloatFloat{T}(trunc(a.hi)) + FloatFloat{T}(trunc(a.lo))
+end
+
+function trunc{T<:SysFloat,I<:Integer}(::Type{I}, a::FloatFloat{T})
+   trunc(I, a.hi) + trunc(I, a.lo)
+end
+
 
 function modf{T<:SysFloat}(a::FloatFloat{T})
    fhi, ihi = modf(a.hi)
