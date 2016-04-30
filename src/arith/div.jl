@@ -71,5 +71,5 @@ end
 (/){T<:SysFloat,S<:Signed}(a::FloatFloat{T}, b::S) = (/)(a, convert(T,b))
 (/){T<:SysFloat,S<:Signed}(a::S, b::FloatFloat{T}) = (/)(convert(T,a), b)
 
-(/){T<:SysFloat,R<:Real}(a::FloatFloat{T}, b::R) = (/)(a, convert(T,b))
-(/){T<:SysFloat,R<:Real}(a::R, b::FloatFloat{T}) = (/)(convert(T,a), b)
+(/){T<:SysFloat,R<:Rational}(a::FloatFloat{T}, b::R) = (/)(a, convert(T,b))
+(/){T<:SysFloat,R<:Rational}(a::R, b::FloatFloat{T}) = (/)(convert(T,a), b)
