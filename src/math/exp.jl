@@ -1070,5 +1070,45 @@ function exp(x::FloatFloat{Float64})
     ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
     frac   = polyval(exp0_1o512_poly, fracpart)
     rest   = exp_0to512[ 1+trunc(Int,intpart) ]
-    rest * ths512 * frac
+    x = rest * ths512 * frac
+    if isneg
+      x = inv(x)
+    end
+    x
+end    
+
+
+function expA(x::FloatFloat{Float64})
+    isneg = signbit(x)
+    x = abs(x)
+    fracpart, intpart = modf(x)
+    fracpart512 = fracpart * 512
+    n512ths = trunc(fracpart512)
+    fracpart = (fracpart512 - n512ths)/512
+    ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
+    frac   = polyval(exp0_1o512_poly, fracpart)
+    rest   = exp_0to512[ 1+trunc(Int,intpart) ]
+    x = rest * (ths512 * frac)
+    if isneg
+      x = inv(x)
+    end
+    x
+end    
+
+
+function expB(x::FloatFloat{Float64})
+    isneg = signbit(x)
+    x = abs(x)
+    fracpart, intpart = modf(x)
+    fracpart512 = fracpart * 512
+    n512ths = trunc(fracpart512)
+    fracpart = (fracpart512 - n512ths)/512
+    ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
+    frac   = polyval(exp0_1o512_poly, fracpart)
+    rest   = exp_0to512[ 1+trunc(Int,intpart) ]
+    x = (rest * ths512) * frac
+    if isneg
+      x = inv(x)
+    end
+    x
 end    
