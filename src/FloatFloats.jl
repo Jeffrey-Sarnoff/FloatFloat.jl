@@ -3,7 +3,7 @@ module FloatFloats
 import Base: hash, string, 
     show, showcompact, showall,
     convert, promote_rule, eltype,
-    zero, one, ldexp, frexp, eps,
+    zero, one, ldexp, frexp, eps, modf,
     isnan, isinf, isfinite, issubnormal,
     isequal, isless, min, max, minmax,
     signbit, sign, copysign, flipsign, abs,
@@ -15,7 +15,7 @@ import Base: hash, string,
 
 export FloatFloat, FF, FF64, FF128, hi, lo,
     iszero, isnonzero, ispos, isneg, isnonneg,
-    hash, maxmin,
+    hash, maxmin, fmod,
     ulp, NaNFF, InfFF,
     mulby2, divby2, mulpow2, divpow2, sqr,
     sqrt, log
