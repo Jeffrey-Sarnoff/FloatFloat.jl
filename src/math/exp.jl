@@ -1,8 +1,8 @@
 #=
 
 =#
-# approximation to exp(x) for x in [0..1/256]
-const exp0_1o256_coeffs = FloatFloat{Float64}[
+# approximation to exp(x) for x in [0..1/512]
+const exp0_1o512_coeffs = FloatFloat{Float64}[
     FF(1.0, 5.097227633339789e-41),
     FF(1.0, -3.079991386964208e-36),
     FF(0.5, 3.07597988809039e-32),
@@ -15,6 +15,6 @@ const exp0_1o256_coeffs = FloatFloat{Float64}[
     FF(2.7557266637587242e-6, 1.4978535552002666e-22),
     FF(2.761257300594076e-7, -5.1515363864984014e-24)];
 
-const exp0_1o256_poly = Poly(exp0_1o256_coeffs)
+const exp0_1o256_poly = Poly(exp0_1o512_coeffs)
 
 
