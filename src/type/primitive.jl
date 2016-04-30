@@ -37,13 +37,13 @@ one{T<:SysFloat}(x::FloatFloat{T}) = one(FloatFloat{T})
 
 # epsilon -- These functions return values of type T, not type FloatFloat{T}
 
-eps{T<:Real}(x::FloatFloat{T}) = eps( ifelse(x.lo == zero(T), x.hi, x.lo) )
-ulp{T<:Real}(x::FloatFloat{T}) = eps( x ) * 0.5
+eps{T<:SysFloat}(x::FloatFloat{T}) = eps( ifelse(x.lo == zero(T), x.hi, x.lo) )
+ulp{T<:SysFloat}(x::FloatFloat{T}) = eps( x ) * 0.5
 
 
 # Inf, NaN
 
-InfFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(Inf(T), Inf(T))
-NaNFF{T<:Real}(::Type{FloatFloat{T}}) = FloatFloat(NaN(T), NaN(T))
-InfFF{T<:Real}(x::FloatFloat{T}) = InfFF(FloatFloat{T})
-NaNFF{T<:Real}(x::FloatFloat{T}) = NaNFF(FloatFloat{T})
+InfFF{T<:SysFloat}(::Type{FloatFloat{T}}) = FloatFloat(Inf(T), Inf(T))
+NaNFF{T<:SysFloat}(::Type{FloatFloat{T}}) = FloatFloat(NaN(T), NaN(T))
+InfFF{T<:SysFloat}(x::FloatFloat{T}) = InfFF(FloatFloat{T})
+NaNFF{T<:SysFloat}(x::FloatFloat{T}) = NaNFF(FloatFloat{T})
