@@ -36,9 +36,9 @@ function convert{T1<:Real, T2<:SysFloat}(::Type{T1}, x::FloatFloat{T2})
    convert(T1, bf)
 end
 
-function convert{T1<:SysFloat, T2<:Real}(::Type{FloatFloat{T1}}, x::T2)
+function convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::Real)
    bf = convert(BigFloat, x)
-   convert(FloatFloat{T1}, bf)
+   convert(FloatFloat{T}, bf)
 end
 
 
