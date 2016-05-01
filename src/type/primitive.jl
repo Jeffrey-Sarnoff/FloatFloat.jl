@@ -49,14 +49,16 @@ end
 function modf{T<:SysFloat}(a::FloatFloat{T})
    fhi, ihi = modf(a.hi)
    flo, ilo = modf(a.lo)
-   fhi+flo, ihi+ilo
+   ihi, ilo = eftAddGTE(ihi, ilo)
+   fhi, flo = eftAddGTE(fhi, flo)
+   FloatFloat{T}(fhi,flo), FloatFloat{T}(ihi,ilo) # fracpart, intpart
 end
 
 function fmod{T<:SysFloat}(fracpart::FloatFloat{T}, intpart::FloatFloat{T})
    intpart + fracpart
 end
-function fmod{T<:SysFloat}(fracpart::T, intpart::T)
-   FloatFloat{T}(intpart) + FloatFloat{T}(fracpart)
+function fmod{T<:StdFloat}(fracpart::T, intpart::T)
+   intpart + fracpart
 end
 
 
