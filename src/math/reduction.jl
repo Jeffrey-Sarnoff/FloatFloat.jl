@@ -15,7 +15,7 @@
         w1 = (x*q - i) / (q +   i)
         w2 = (x*q - i) / (q + x*i)
          
-    exp(x)   = exp(t) * exp(w)                       for exp(x), exp(x) = exp(ta)*exp(wa), ta=div(i,q), wa=x-ta
+    exp(x)   = exp(t) * exp(w)               for exp(x), exp(x) = exp(ta)*exp(wa), ta=div(i,q), wa=x-ta
     log(1+x) = log(1+t) + log(1+w1)
     sin(x)   = sin(t)*cos(w) + sin(w)*cos(t)
     cos(x)   = cos(t)*cos(w) - sin(w)*sin(t)
