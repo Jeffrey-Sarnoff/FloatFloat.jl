@@ -220,7 +220,7 @@ function exp(x::FloatFloat{Float64})
     fraction = exp0to1o16(fracless16ths)
     
     result = intpart <= 512 ? exp_0to512[intpart+1] : throw(DomainError())
-    result = result * exp0to16o16[ frac16ths+1 ] 
+    result = result * exp0to16o16[ fracpart16ths+1 ] 
     result = result * fraction
     result
 end    
