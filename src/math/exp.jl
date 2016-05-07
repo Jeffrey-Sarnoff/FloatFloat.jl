@@ -200,6 +200,12 @@ const exp3o64to4o64_poly = Poly(exp3o64to4o64_coeffs);
 const exp0to4o64_polys = 
     Poly{FloatFloat{Float64}}[exp0to1o64_poly,exp1o64to2o64_poly, exp2o64to3o64_poly, exp3o64to4o64_poly];
 
+@inline function exp0to1o16(x::FloatFloat{Float64})
+    fidx = trunc(x * 4.0)
+    newx = x - ldexp(fidx,-2);
+    polyval( exp0to4o64_polys[trunc(Int,fidx)], newx )
+end    
+
 function exp(x::FloatFloat{Float64})
     if signbit(x)
         return inv(exp(-x))
@@ -210,15 +216,11 @@ function exp(x::FloatFloat{Float64})
     intpart = trunc(Int,fintpart)
     fracpart16ths = trunc(Int, ldexp(fracpart,4)) # 0..15, how many full 16ths
     fracless16ths = fracpart - fracpart16ths/16
-    fracpart64ths = trunc(Int, ldexp(fracless16ths,6)) # 0..3 how many full 64ths
-    fracless64ths = fracless16ths - fracpart64ths/64
-    
-    frac64ths = fracpart16ths*4+fracpart64ths
-    
-    fraction = polyval(exp0to4o64_polys[fracpart64ths+1],fracless64ths)
+
+    fraction = exp0to1o16(fracless16ths)
     
     result = intpart <= 512 ? exp_0to512[intpart+1] : throw(DomainError())
-    result = result * exp0to64o64[ frac64ths+1 ] 
+    result = result * exp0to16o16[ frac16ths+1 ] 
     result = result * fraction
     result
 end    
