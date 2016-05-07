@@ -218,7 +218,7 @@ function exp(x::FloatFloat{Float64})
     fraction = polyval(exp0to4o64_polys[fracpart64ths+1],fracless64ths)
     
     fraction = fraction * exp0to16o16[ fracpart16ths+1 ] 
-    result = idx <= 512 ? exp_0to512[idx+1] : throw(DomainError())
+    result = intpart <= 512 ? exp_0to512[intpart+1] : throw(DomainError())
     result = result * exp0o16to16o16[ fracpart16ths+1 ] 
     result = result * fraction
     result
