@@ -159,7 +159,7 @@ const exp1o64to2o64_coeffs = FloatFloat{Float64}[
     FF(2.1373517579988576e-9, 2.0384541019947474e-27)
     ];
 
-const exp1o64to2o64_poly = Poly(exp1o64to1o64_coeffs);
+const exp1o64to2o64_poly = Poly(exp1o64to2o64_coeffs);
 
 const exp2o64to3o64_coeffs = FloatFloat{Float64}[
     FF(1.0, 7.128097835770486e-29),
