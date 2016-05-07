@@ -205,10 +205,7 @@ function exp(x::FloatFloat{Float64})
         return inv(exp(-x))
     end
     
-    xhifracpart, xhiintpart = modf(x.hi)
-    fracpart16 = trunc(Int, ldexp(xhifracpart,4))
-    fracpart64 = trunc(Int, ldexp(xhifracpart,6)) >> 4
-    
+
     fracpart, fintpart = modf(x)
     intpart = trunc(Int,fintpart)
     fracpart16ths = trunc(Int, ldexp(fracpart,4)) # 0..15, how many full 16ths
