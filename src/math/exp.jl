@@ -701,7 +701,6 @@ const exp0to8ov8 = [exp0to1ov8,exp1to2ov8,exp2to3ov8,exp3to4ov8,
 
 function exp0to1(x::FloatFloat{Float64})
     idx = trunc(Int,ldexp(x,3));
-    x = x - (idx/8)
     if -1 < idx < 8
        polyval(exp0to8ov8[1+idx], x)
     else
