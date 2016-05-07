@@ -699,13 +699,13 @@ const exp7to8ov8 = Poly(p7to8ov8coeffs);
 const exp0to8ov8 = [exp0to1ov8,exp1to2ov8,exp2to3ov8,exp3to4ov8,
                     exp4to5ov8,exp5to6ov8,exp6to7ov8,exp7to8ov8];
 
-@inline function exp0to1(x::FloatFloat{Float64})
+function exp0to1(x::FloatFloat{Float64})
     idx = trunc(Int,ldexp(x,3));
-    if -1 < idx < 8
+    #if -1 < idx < 8
        polyval(exp0to8ov8[1+idx], x)
-    else
-       throw(ErrorException("index out of range"))
-    end
+    #else
+    #   throw(ErrorException("index out of range"))
+    #end
 end
 
 # relerr seems to stay within 8e-32
