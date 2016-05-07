@@ -708,6 +708,7 @@ function exp0to1(x::FloatFloat{Float64})
     end
 end
 
+# relerr seems to stay within 8e-32
 function exp(x::FloatFloat{Float64})
    if signbit(x)
        return inv(exp(-x))
