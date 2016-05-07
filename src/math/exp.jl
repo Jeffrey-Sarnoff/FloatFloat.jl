@@ -198,7 +198,7 @@ const exp3o64to4o64_coeffs = FloatFloat{Float64}[
 const exp3o64to4o64_poly = Poly(exp3o64to4o64_coeffs);
 
 const exp0to4o64_polys = 
-    Poly{FloatFloat{Float64}}[exp0t1o64_poly,exp1o64to2o64_poly, exp2o64to3o64_poly, exp3o64to4o64_poly];
+    Poly{FloatFloat{Float64}}[exp0to1o64_poly,exp1o64to2o64_poly, exp2o64to3o64_poly, exp3o64to4o64_poly];
 
 function exp(x::FloatFloat{Float64})
     if signbit(x)
