@@ -120,7 +120,9 @@ FF(2.5013289668126e-8, -1.1004109290375206e-24),
 FF(2.205022430743899e-9, 7.139182978532825e-26)
 ]
 
-#=
+
+
+=#
 
 # approximation to exp(x) for x in [0..1/64]
 const exp0to1o64_coeffs = FloatFloat{Float64}[
@@ -140,9 +142,89 @@ const exp0to1o64_coeffs = FloatFloat{Float64}[
     ];
 
 const exp0to1o64_poly = Poly(exp0to1o64_coeffs);
-  
 
-=#
+const exp1o64to2o64_coeffs = FloatFloat{Float64}[
+    FF(1.0, 7.395570986446986e-32),
+    FF(1.0, -4.352293525524051e-29),
+    FF(0.5, 1.1757226072244714e-26),
+    FF(0.16666666666666666, 9.251856608142122e-18),
+    FF(0.041666666666666664, 2.3131795663066315e-18),
+    FF(0.008333333333333333, 9.851121114631183e-20),
+    FF(0.0013888888888888898, 8.631976730419249e-20),
+    FF(0.00019841269841265429, 1.284092635594694e-20),
+    FF(2.4801587303029395e-5, 1.2672772866504192e-21),
+    FF(2.755731887666599e-6, 5.552195691484199e-25),
+    FF(2.755737912136586e-7, -1.1447906149999077e-23),
+    FF(2.5045106362981204e-8, -6.965253473354681e-26),
+    FF(2.1373517579988576e-9, 2.0384541019947474e-27)
+    ];
+
+const exp1o64to2o64_poly = Poly(exp1o64to1o64_coeffs);
+
+const exp2o64to3o64_coeffs = FloatFloat{Float64}[
+    FF(1.0, 7.128097835770486e-29),
+    FF(1.0, -2.4240019288018098e-26),
+    FF(0.5, 3.797420899690985e-24),
+    FF(0.16666666666666666, 9.251495669917433e-18),
+    FF(0.041666666666666664, 2.3365617154899332e-18),
+    FF(0.008333333333333331, 7.4763488230724735e-19),
+    FF(0.0013888888888889269, 9.884254934345457e-20),
+    FF(0.00019841269841171314, -6.512494569558708e-21),
+    FF(2.480158732065839e-5, -1.0345545544296172e-21),
+    FF(2.7557316495551666e-6, -9.57217409523331e-23),
+    FF(2.755759958668079e-7, -2.3475111435593186e-23),
+    FF(2.5032526566203383e-8, -7.654444888940149e-25),
+    FF(2.1708364629145315e-9, 1.7690126363401205e-25)
+    ];
+    
+const exp2o64to3o64_poly = Poly(exp2o64to3o64_coeffs);
+
+const exp3o64to4o64_coeffs = FloatFloat{Float64}[
+    FF(1.0, 6.154520219211317e-27),
+    FF(1.0, -1.478781883470097e-24),
+    FF(0.5, 1.6383279922404962e-22),
+    FF(0.16666666666666666, 9.240777234570868e-18),
+    FF(0.041666666666666664, 2.823486683702821e-18),
+    FF(0.008333333333333316, 5.458560092004949e-19),
+    FF(0.0013888888888893038, -7.164552181955103e-20),
+    FF(0.00019841269840507907, 6.166321270078752e-21),
+    FF(2.4801587406425976e-5, 1.2411616658753736e-21),
+    FF(2.7557308553830405e-6, -7.382191872823027e-23),
+    FF(2.755809970619652e-7, -1.62010664388892e-23),
+    FF(2.5013289668126e-8, -1.1004109290375206e-24),
+    FF(2.205022430743899e-9, 7.139182978532825e-26)
+    ];
+
+const exp3o64to4o64_poly = Poly(exp3o64to4o64_coeffs);
+
+const exp0to4o64_polys = 
+    Poly{FloatFloat{Float64}}[exp0t1o64_poly,exp1o64to2o64_poly, exp2o64to3o64_poly, exp3o64to4o64_poly];
+
+function exp(x::FloatFloat{Float64})
+    if signbit(x)
+        return inv(exp(-x))
+    end
+    
+    xhifracpart, xhiintpart = modf(x.hi)
+    fracpart16 = trunc(Int, ldexp(xhifracpart,4))
+    fracpart64 = trunc(Int, ldexp(xhifracpart,6)) >> 4
+    
+    fracpart, intpart = modf(x)
+    fraction = polyval(exp0to4o64_polys[fracpart64],fracpart)
+    
+    n512ths = trunc(fracpart512) # trunc(Float64,fracpart512)
+    fracpart = (fracpart512 - n512ths) * 0.001953125 # 1/512
+    ths512 = exp_over512[ trunc(Int,n512ths)+1 ]
+    frac   = polyval(exp0_1o512_poly, fracpart)
+    idx    =  1+trunc(Int,intpart)
+    rest   = idx <= 513 ? exp_0to512[idx] : throw(DomainError())
+    rest   = rest * ths512
+    rest   = rest * frac
+    rest
+end    
+
+
+
 # approximation to exp(x) for x in [0..1/512]
 const exp0_1o512_coeffs = FloatFloat{Float64}[
     FF(1.0, 0.0),
