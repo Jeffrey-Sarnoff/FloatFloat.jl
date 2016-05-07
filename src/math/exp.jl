@@ -215,7 +215,7 @@ function exp(x::FloatFloat{Float64})
     fracless16ths = fracpart - fracpart16ths/16
     fracpart64ths = trunc(Int, ldexp(fracless16ths,6)) # 0..3 how many full 64ths
     fracless64ths = fracless16ths - fracpart64ths/64
-    fraction = polyval(exp0to64o64_polys[fracpart64ths+1],fracless64ths)
+    fraction = polyval(exp0to4o64_polys[fracpart64ths+1],fracless64ths)
     
     fraction = fraction * exp0to16o16[ fracpart16ths+1 ] 
     result = idx <= 512 ? exp_0to512[idx+1] : throw(DomainError())
