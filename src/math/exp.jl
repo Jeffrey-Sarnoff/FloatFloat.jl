@@ -1375,7 +1375,7 @@ exp_over512 = FloatFloat{Float64}[
 
 
 
-function exp(x::FloatFloat{Float64})
+function expA(x::FloatFloat{Float64})
     isneg = signbit(x)
     x = abs(x)
     fracpart, intpart = modf(x)
