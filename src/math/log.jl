@@ -3,7 +3,9 @@
 function log(a::FloatFloat{Float64})
     logA = log(a.hi) + FF(a.lo) / a.hi
     elogA = exp(logA)
-    logA + ( a - elogA)/elogA
+    logA = logA + (a - elogA)/elogA
+    elogA = exp(logA)
+    logA + (a - elogA)/elogA
 end
 
 # prior
