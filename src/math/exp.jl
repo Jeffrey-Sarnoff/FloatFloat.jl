@@ -1,6 +1,6 @@
 #=
    exp01 in eighths
-   
+=#   
 # exp(0/8 .. 1/8 )
 const p0coeffs = FloatFloat{Float64}[
   FF(1.0, 0.0),
@@ -177,7 +177,18 @@ const p7coeffs = FloatFloat{Float64}[
   ];
 const exp7to8o8 = Poly(p7coeffs);
 
-=#
+const exp0to8o8 = [exp0to1o8,exp1to2o8,exp2to3o8,exp3to4o8,exp4to5o8,exp5to6o8,exp6to7o8,exp7to8o8];
+
+function exp01(x::FloatFloat{Float64})
+    idx = trunc(Int,ldexp(x,3))+1;
+    x = x - (idx/8)
+    if 0 < idx < 9
+       polyval(exp0to8[idx], x)
+    else
+       throw(ErrorException("index out of range"))
+    end
+end
+
 #=
   sollya DD approximation to exp(x) for x in [0-1/4096, 1/64+1/4096]
   prec=500;
