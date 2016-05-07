@@ -2,7 +2,7 @@
    exp01 in eighths
 =#   
 # exp(0/8 .. 1/8 )
-const p0coeffs = FloatFloat{Float64}[
+const p0to1ov8coeffs = FloatFloat{Float64}[
   FF(1.0, 0.0),
   FF(1.0, 0.0),
   FF(0.5, 0.0),
@@ -21,10 +21,10 @@ const p0coeffs = FloatFloat{Float64}[
   FF(7.63295031577968e-13, -4.3036175749963783e-29),
   FF(5.0792421079500086e-14, -2.5132946739281802e-30)
   ];
-const exp0to1o8 = Poly(p0coeffs);
+const exp0to1ov8 = Poly(p0to1ov8coeffs);
 
 # exp(1/8 .. 2/8 )
-const p1coeffs = FloatFloat{Float64}[
+const p1to2ov8coeffs = FloatFloat{Float64}[
   FF(1.0, 8.867782650815699e-28),
   FF(1.0, -8.529088918944551e-26),
   FF(0.5, 3.8454411617817696e-24),
@@ -43,10 +43,10 @@ const p1coeffs = FloatFloat{Float64}[
   FF(7.495353214181705e-13, 1.2802972065514587e-29),
   FF(5.764836863814681e-14, 2.374183553698351e-30)
   ];
-const exp1to2o8 = Poly(p1coeffs);
+const exp1to2ov8 = Poly(p1to2ov8coeffs);
 
 # exp(2/8 .. 3/8 )
-const p2coeffs = FloatFloat{Float64}[
+const p2to3ov8coeffs = FloatFloat{Float64}[
   FF(1.0, 8.163703129246973e-24),
   FF(1.0, -4.529944022206224e-22),
   FF(0.5, 1.1812020819280091e-20),
@@ -65,10 +65,10 @@ const p2coeffs = FloatFloat{Float64}[
   FF(7.186864770689674e-13, -3.240798731209672e-29),
   FF(6.532415843627498e-14, -3.1561208710768616e-30)
   ];
-const exp2to3o8 = Poly(p2coeffs);
+const exp2to3ov8 = Poly(p2to3ov8coeffs);
 
 # exp(3/8 .. 4/8 )
-const p3coeffs = FloatFloat{Float64}[
+const p3to4ov8coeffs = FloatFloat{Float64}[
   FF(1.0, 3.0564510164802533e-21),
   FF(1.0, -1.198619474280957e-19),
   FF(0.5, 2.2101872190473796e-18),
@@ -87,10 +87,10 @@ const p3coeffs = FloatFloat{Float64}[
   FF(6.663345315672208e-13, -1.9381106176609326e-29),
   FF(7.402196908048188e-14, 5.7383464413269716e-30)
   ];
-const exp3to4o8 = Poly(p3coeffs);
+const exp3to4ov8 = Poly(p3to4ov8coeffs);
 
 # exp(4/8 .. 5/8 )
-const p4coeffs = FloatFloat{Float64}[
+const p4to5ov8coeffs = FloatFloat{Float64}[
   FF(1.0, 2.5558000711263893e-19),
   FF(1.0, -7.760112326648925e-18),
   FF(0.5000000000000001, -2.108345967203264e-19),
@@ -109,10 +109,10 @@ const p4coeffs = FloatFloat{Float64}[
   FF(5.873001841579237e-13, 2.6758098211287334e-29),
   FF(8.387787975644873e-14, 6.045444646397079e-30)
   ];
-const exp4to5o8 = Poly(p4coeffs);
+const exp4to5ov8 = Poly(p4to5ov8coeffs);
 
 # exp(5/8 .. 6/8 )
-const p5coeffs = FloatFloat{Float64}[
+const p5to6ov8coeffs = FloatFloat{Float64}[
   FF(1.0, 8.877893859524011e-18),
   FF(0.9999999999999998, 2.0458431673662004e-18),
   FF(0.5000000000000026, 1.0629370568879439e-17),
@@ -131,10 +131,10 @@ const p5coeffs = FloatFloat{Float64}[
   FF(4.754061157791187e-13, -2.3733094675220438e-29),
   FF(9.504608969256357e-14, 4.3291762744742026e-30)
   ];
-const exp5to6o8 = Poly(p5coeffs);
+const exp5to6ov8 = Poly(p5to6ov8coeffs);
 
 # exp(6/8 .. 7/8 )
-const p6coeffs = FloatFloat{Float64}[
+const p6to7ov8coeffs = FloatFloat{Float64}[
   FF(1.0000000000000002, -4.9223886126515946e-17),
   FF(0.9999999999999963, 4.576888093672128e-17),
   FF(0.5000000000000356, -1.296088767326531e-17),
@@ -153,10 +153,10 @@ const p6coeffs = FloatFloat{Float64}[
   FF(3.2330304565679907e-13, 1.645272022475646e-29),
   FF(1.0770132950567601e-13, -1.1236936070686933e-31)
   ];
-const exp6to7o8 = Poly(p6coeffs);
+const exp6to7ov8 = Poly(p6to7ov8coeffs);
 
 # exp(7/8 .. 8/8 )
-const p7coeffs = FloatFloat{Float64}[
+const p7to8ov8coeffs = FloatFloat{Float64}[
   FF(1.0000000000000022, 9.907946013128191e-18),
   FF(0.9999999999999596, -8.32639904194931e-18),
   FF(0.5000000000003445, 4.8200180785675464e-17),
@@ -175,15 +175,15 @@ const p7coeffs = FloatFloat{Float64}[
   FF(1.2226715592497332e-13, 2.3889534823833134e-30),
   FF(1.220415949418186e-13, 1.4876249029317642e-30)
   ];
-const exp7to8o8 = Poly(p7coeffs);
+const exp7to8ov8 = Poly(p7to8ov8coeffs);
 
-const exp0to8o8 = [exp0to1o8,exp1to2o8,exp2to3o8,exp3to4o8,exp4to5o8,exp5to6o8,exp6to7o8,exp7to8o8];
+const exp0to8ov8 = [exp0to1ov8,exp1to2ov8,exp2to3ov8,exp3to4ov8,exp4to5ov8,exp5to6ov8,exp6to7ov8,exp7to8ov8];
 
-function exp01(x::FloatFloat{Float64})
+function exp0to1(x::FloatFloat{Float64})
     idx = trunc(Int,ldexp(x,3))+1;
     x = x - (idx/8)
     if 0 < idx < 9
-       polyval(exp0to8[idx], x)
+       polyval(exp0to8ov8[idx], x)
     else
        throw(ErrorException("index out of range"))
     end
