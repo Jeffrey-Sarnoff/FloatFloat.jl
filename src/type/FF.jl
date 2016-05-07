@@ -1,3 +1,6 @@
+typealias FF128 FloatFloat{Float64}
+typealias FF64  FloatFloat{Float32}
+
 # use FF when it is not known that (hi,lo) == eftAdd(hi,lo)
 #
 function FF{T<:SysFloat}(hi::T, lo::T) 
@@ -22,8 +25,7 @@ function FF{T<:SysFloat}(a::FloatFloat{T}, b::FloatFloat{T})
     FloatFloat{FloatFloat{T}}(FloatFloat{T}(w,x), FloatFloat{T}(y,z))
 end    
 
-typealias FF128 FloatFloat{Float64}
-typealias FF64  FloatFloat{Float32}
+
 
 #=
 FF128{T1<:Real, T2<:Real}(hi::T1, lo::T2) = FF(Float64(hi),Float64(lo))
