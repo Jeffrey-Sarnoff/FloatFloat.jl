@@ -700,10 +700,10 @@ const exp0to8ov8 = [exp0to1ov8,exp1to2ov8,exp2to3ov8,exp3to4ov8,
                     exp4to5ov8,exp5to6ov8,exp6to7ov8,exp7to8ov8];
 
 function exp0to1(x::FloatFloat{Float64})
-    idx = trunc(Int,ldexp(x,3))+1;
+    idx = trunc(Int,ldexp(x,3));
     x = x - (idx/8)
-    if 0 < idx < 9
-       polyval(exp0to8ov8[idx], x)
+    if -1 < idx < 8
+       polyval(exp0to8ov8[1+idx], x)
     else
        throw(ErrorException("index out of range"))
     end
