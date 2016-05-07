@@ -1,9 +1,11 @@
 
 
 function log(a::FloatFloat{Float64})
-    hi = FloatFloat{Float64}(log(a.hi))
-    lo = log1p(a.lo/a.hi)
-    hi + lo
+    logA = log(a.hi)
+
+    logB = logA + FF(a.lo) / a.hi
+    elogB = exp(logB)
+    logB + ( a - elogB)/elogB
 end
 
 # prior
