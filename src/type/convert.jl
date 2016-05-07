@@ -39,7 +39,8 @@ end
 
 FloatFloat{T<:SysFloat}(x::BigFloat) = convert(FloatFloat{T}, x)
 BigFloat{T<:SysFloat}(x::FloatFloat{T}) = convert(BigFloat, x)
-
+FloatFloat{T<:SysFloat}(x::String) = convert(FloatFloat{T}, parse(BigFloat,x))
+String{T<:SysFloat}(x::FloatFloat{T}) = String(convert(BigFloat,x))
 
 function convert{T1<:Integer, T2<:SysFloat}(::Type{Rational{T1}}, x::FloatFloat{T2})
    br = convert(Rational{BigInt},x.hi) + convert(Rational{BigInt},x.lo)
