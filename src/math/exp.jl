@@ -720,7 +720,7 @@ function exp(x::FloatFloat{Float64})
       if ipart != 1
           exp0to512[ipart+1] * fpart
       else      # double-double(exp(1)) * fpart, add in triple-double(exp(1)) least sig part * fpart.hi
-          muladd(FF(2.718281828459045, 1.4456468917292502e-16),fpart, -2.1277171080381768e-33*fpart.hi) 
+          FF(2.718281828459045, 1.4456468917292502e-16)*fpart + (-2.1277171080381768e-33*fpart.hi) 
       end
    else
       throw(ErrorException("value too large"))
