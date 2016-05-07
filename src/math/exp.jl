@@ -6,7 +6,7 @@
   dom=[-1/4096;1/64+1/4096];
   p=fpminimax(f,deg,[|DD...|],dom);
   errmax = max( sup(supnorm(p,f,dom,relative,2^(-107))),
-                sup(supnorm(p,f,dom,absolure,2^(-107))) ); # < 5.0e-41
+                sup(supnorm(p,f,dom,absolute,2^(-107))) ); # < 5.0e-41
   
   coeffs0_12 = FloatFloat{Float64}[
   FF( ldexp(1.0, 0), ldexp(0.0, 0) ),
