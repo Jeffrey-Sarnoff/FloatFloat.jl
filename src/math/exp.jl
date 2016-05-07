@@ -203,7 +203,7 @@ const exp0to4o64_polys =
 @inline function exp0to1o16(x::FloatFloat{Float64})
     fidx = trunc(x * 4.0)
     newx = x - ldexp(fidx,-2);
-    polyval( exp0to4o64_polys[trunc(Int,fidx)], newx )
+    polyval( exp0to4o64_polys[trunc(Int,fidx)+1], newx )
 end    
 
 function exp(x::FloatFloat{Float64})
