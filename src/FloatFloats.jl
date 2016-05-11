@@ -21,10 +21,12 @@ export FloatFloat, FF, FF64, FF128, hi, lo,
     ulp, NaNFF, InfFF,
     mulby2, divby2, mulpow2, divpow2, sqr
 
-using Polynomials
+
 using Genera
 using ErrorfreeArithmetic
 using FloatSafeInts
+using FastPolynomials
+
 
 setprecision(BigFloat,384)
 
