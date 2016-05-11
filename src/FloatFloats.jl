@@ -26,7 +26,7 @@ using Genera
 using ErrorfreeArithmetic
 using FloatSafeInts
 
-# using AccurateArithmetic
+setprecision(BigFloat,384)
 
 include("type/FloatFloat.jl")
 include("type/convert.jl")
