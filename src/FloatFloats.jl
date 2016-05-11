@@ -11,7 +11,8 @@ import Base: hash, string,
     trunc,
     (+),(-),(*),(/),(\),(%),(^),
     inv, sqrt, hypot,
-    log, exp
+    log, exp,
+    BigFloat, String
 
 
 export FloatFloat, FF, FF64, FF128, hi, lo,
