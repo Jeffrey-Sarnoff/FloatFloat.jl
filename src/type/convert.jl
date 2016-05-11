@@ -37,11 +37,11 @@ function convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::BigFloat)
     FloatFloat{T}(hi,lo)
 end
 
-FloatFloat{Float64}(x::BigFloat) = convert(FloatFloat{Float64}, x)
-FloatFloat{Float32}(x::BigFloat) = convert(FloatFloat{Float32}, x)
+#FloatFloat{Float64}(x::BigFloat) = convert(FloatFloat{Float64}, x)
+#FloatFloat{Float32}(x::BigFloat) = convert(FloatFloat{Float32}, x)
 BigFloat{T<:SysFloat}(x::FloatFloat{T}) = convert(BigFloat, x)
-FloatFloat{Float64}(x::String) = convert(FloatFloat{Float64}, parse(BigFloat,x))
-FloatFloat{Float32}(x::String) = convert(FloatFloat{Float32}, parse(BigFloat,x))
+#FloatFloat{Float64}(x::String) = convert(FloatFloat{Float64}, parse(BigFloat,x))
+#FloatFloat{Float32}(x::String) = convert(FloatFloat{Float32}, parse(BigFloat,x))
 String{T<:SysFloat}(x::FloatFloat{T}) = String(convert(BigFloat,x))
 
 function convert{T1<:Integer, T2<:SysFloat}(::Type{Rational{T1}}, x::FloatFloat{T2})
