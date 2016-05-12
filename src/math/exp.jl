@@ -704,7 +704,7 @@ const exp0to8ov8 = [exp0to1ov8,exp1to2ov8,exp2to3ov8,exp3to4ov8,
    exp01 in eighths
 =#   
 # exp(0/8 .. 1/8 )
-exp0to1ov8coeffs(x) = @horner(x,
+exp0to1ov8(x) = @horner(x,
   FF(1.0, 0.0),
   FF(1.0, 0.0),
   FF(0.5, 0.0),
@@ -726,7 +726,7 @@ exp0to1ov8coeffs(x) = @horner(x,
 #const exp0to1ov8 = Poly(p0to1ov8coeffs);
 
 # exp(1/8 .. 2/8 )
-exp1to2ov8coeffs(x) = @horner(x,
+exp1to2ov8(x) = @horner(x,
   FF(1.0, 8.867782650815699e-28),
   FF(1.0, -8.529088918944551e-26),
   FF(0.5, 3.8454411617817696e-24),
@@ -748,7 +748,7 @@ exp1to2ov8coeffs(x) = @horner(x,
 #const exp1to2ov8 = Poly(p1to2ov8coeffs);
 
 # exp(2/8 .. 3/8 )
-exp2to3ov8coeffs(x) = @horner(x,
+exp2to3ov8(x) = @horner(x,
   FF(1.0, 8.163703129246973e-24),
   FF(1.0, -4.529944022206224e-22),
   FF(0.5, 1.1812020819280091e-20),
@@ -770,7 +770,7 @@ exp2to3ov8coeffs(x) = @horner(x,
 #const exp2to3ov8 = Poly(p2to3ov8coeffs);
 
 # exp(3/8 .. 4/8 )
-exp3to4ov8coeffs(x) = @horner(x,
+exp3to4ov8(x) = @horner(x,
   FF(1.0, 3.0564510164802533e-21),
   FF(1.0, -1.198619474280957e-19),
   FF(0.5, 2.2101872190473796e-18),
@@ -792,7 +792,7 @@ exp3to4ov8coeffs(x) = @horner(x,
 #const exp3to4ov8 = Poly(p3to4ov8coeffs);
 
 # exp(4/8 .. 5/8 )
-exp4to5ov8coeffs(x) = @horner(x,
+exp4to5ov8(x) = @horner(x,
   FF(1.0, 2.5558000711263893e-19),
   FF(1.0, -7.760112326648925e-18),
   FF(0.5000000000000001, -2.108345967203264e-19),
@@ -814,7 +814,7 @@ exp4to5ov8coeffs(x) = @horner(x,
 #const exp4to5ov8 = Poly(p4to5ov8coeffs);
 
 # exp(5/8 .. 6/8 )
-exp5to6ov8coeffs(x) = @horner(x,
+exp5to6ov8(x) = @horner(x,
   FF(1.0, 8.877893859524011e-18),
   FF(0.9999999999999998, 2.0458431673662004e-18),
   FF(0.5000000000000026, 1.0629370568879439e-17),
@@ -836,7 +836,7 @@ exp5to6ov8coeffs(x) = @horner(x,
 #const exp5to6ov8 = Poly(p5to6ov8coeffs);
 
 # exp(6/8 .. 7/8 )
-exp6to7ov8coeffs(x) = @horner(x, 
+exp6to7ov8(x) = @horner(x, 
   FF(1.0000000000000002, -4.9223886126515946e-17),
   FF(0.9999999999999963, 4.576888093672128e-17),
   FF(0.5000000000000356, -1.296088767326531e-17),
@@ -858,7 +858,7 @@ exp6to7ov8coeffs(x) = @horner(x,
 #const exp6to7ov8 = Poly(p6to7ov8coeffs);
 
 # exp(7/8 .. 8/8 )
-exp7to8ov8coeffs(x) = @horner(x,
+exp7to8ov8(x) = @horner(x,
   FF(1.0000000000000022, 9.907946013128191e-18),
   FF(0.9999999999999596, -8.32639904194931e-18),
   FF(0.5000000000003445, 4.8200180785675464e-17),
