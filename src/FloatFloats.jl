@@ -27,7 +27,7 @@ export FloatFloat, FF, FF64, FF128, hi, lo,
 using Genera
 using ErrorfreeArithmetic
 using FloatSafeInts
-using FastPolynomials
+#using FastPolynomials
 
 
 setprecision(BigFloat,384)
