@@ -14,6 +14,8 @@ import Base: hash, string,
     log, exp,
     BigFloat, String
 
+import Base.Math:@horner    
+
 
 export FloatFloat, FF, FF64, FF128, hi, lo,
     iszero, isnonzero, ispos, isneg, isnonneg,
