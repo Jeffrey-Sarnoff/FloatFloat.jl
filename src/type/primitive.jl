@@ -71,7 +71,7 @@ one{T<:SysFloat}(x::FloatFloat{T}) = one(FloatFloat{T})
 
 # epsilon -- These functions return values of type T, not type FloatFloat{T}
 
-eps{T<:SysFloat}(x::FloatFloat{T}) = eps( ifelse(x.lo == zero(T), x.hi, x.lo) )
+eps{T<:SysFloat}(x::FloatFloat{T}) = eps( ifelse(x.lo == zero(T), eps(x.hi)/2, x.lo) )
 ulp{T<:SysFloat}(x::FloatFloat{T}) = eps( x ) * 0.5
 
 
