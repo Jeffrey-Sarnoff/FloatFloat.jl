@@ -12,6 +12,7 @@ import Base: hash, string,
     (+),(-),(*),(/),(\),(%),(^),
     inv, sqrt, hypot,
     log, exp,
+    sin, cos, tan,
     BigFloat, String
 
 import Base.Math:@horner    
