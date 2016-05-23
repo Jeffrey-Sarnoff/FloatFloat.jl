@@ -25,3 +25,17 @@ convert{T<:SysFloat}(::Type{BigInt}, x::Float{T}) = parse(BigInt, string(x.hi))
 convert{T<:SysFloat}(::Type{Rational{BigInt}}, x::Float{T}) =
     convert(Rational{BigInt}, parse(BigFloat, string(x.hi)))
 
+# delegate math functions
+
+@delegate Float.hi [log, log1p, exp, expm1, 
+                    sin, cos, tan, csc, sec, cot, 
+                    asin, acos, atan, acsc, asec, acot,
+                    sinh, cosh, tanh, csch, sech, coth, 
+                    asinh, acosh, atanh, acsch, asech, acoth,
+                    gamma, lgamma, zeta]
+                    
+                    
+
+
+
+
