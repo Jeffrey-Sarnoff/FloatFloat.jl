@@ -14,7 +14,6 @@ Float{T<:SysFloat}(hi::T) = Float{T}(hi) # the RHS must be parameterized
 # conversions
 
 convert{T<:SysFloat}(::Type{Float{T}}, a::T) = Float{T}(a)
-convert{T<:SysFloat}(::Type{Float{T}}, x::FloatFloat{T}) = Float(x.hi)
 convert{T<:SysFloat}(::Type{Float{T}}, x::Float{T}) = x # needed because Float <: FloatingPoint
 
 for T in (:Int32, :Int64, :Integer, :AbstractFloat, :Real)
