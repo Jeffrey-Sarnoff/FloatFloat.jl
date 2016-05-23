@@ -1,6 +1,6 @@
 module FloatFloats
 
-import Base: hash, string, 
+import Base: hash, string, String,
     show, showcompact, showall,
     convert, promote_rule, eltype,
     zero, one, ldexp, frexp, eps, modf,
@@ -11,9 +11,12 @@ import Base: hash, string,
     trunc,
     (+),(-),(*),(/),(\),(%),(^),
     inv, sqrt, hypot,
-    log, exp,
-    sin, cos, tan,
-    String
+    log, log1p, exp, expm1, 
+    sin, cos, tan, csc, sec, cot, 
+    asin, acos, atan, acsc, asec, acot,
+    sinh, cosh, tanh, csch, sech, coth, 
+    asinh, acosh, atanh, acsch, asech, acoth,
+    gamma, lgamma, zeta
 
 import Base.Math:@horner    
 
