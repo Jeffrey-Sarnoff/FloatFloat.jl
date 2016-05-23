@@ -30,6 +30,12 @@ using ErrorfreeArithmetic
 using FloatSafeInts
 #using FastPolynomials
 
+macro BigFloatConst(x)
+    parse(BigFloat, string(:($x)))
+end
+macro BigFloat(x)
+    parse(BigInt, string(eval(:($x))))
+end
 
 setprecision(BigFloat,384)
 
