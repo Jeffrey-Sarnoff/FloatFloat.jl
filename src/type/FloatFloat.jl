@@ -15,6 +15,10 @@ FloatFloat{T<:SysFloat}(hi::T) = FloatFloat(hi,zero(T)) # RHS should not be para
 convert{T<:SysFloat}(::Type{FloatFloat{T}}, hi::T, lo::T) = FloatFloat{T}(hi, lo)
 convert{T<:SysFloat}(::Type{FloatFloat{T}}, hi::T)        = FloatFloat{T}(hi, zero(T))
 
+# interconvert with Float{T}
+convert{T<:SysFloat}(::Type{Float{T}}, x::FloatFloat{T}) = Float(x.hi)
+convert{T<:SysFloat}(::Type{FloatFloat{T}}, x::Float{T}) = FloatFloat(x.hi, zero(T))
+
 # define complementary conversions
 convert{T<:SysFloat}(::Type{T}, ff::FloatFloat{T}) = ff.hi
 convert(::Type{Float64}, ff::FloatFloat{Float32})  = convert(Float64,ff.hi)
