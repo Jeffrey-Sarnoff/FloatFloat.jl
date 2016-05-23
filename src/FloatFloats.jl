@@ -40,6 +40,8 @@ end
 
 setprecision(BigFloat,384)
 
+include("type/Float.jl")
+
 include("type/FloatFloat.jl")
 include("type/convert.jl")
 
