@@ -22,7 +22,8 @@ export FloatFloat, FF, FF64, FF128, hi, lo,
     iszero, isnonzero, ispos, isneg, isnonneg,
     hash, maxmin, fmod,
     ulp, NaNFF, InfFF,
-    mulby2, divby2, mulpow2, divpow2, sqr
+    mulby2, divby2, mulpow2, divpow2, sqr,
+    @BigFloat, @BigInt
 
 
 using Genera
