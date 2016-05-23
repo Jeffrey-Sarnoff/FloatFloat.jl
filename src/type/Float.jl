@@ -20,8 +20,8 @@ for T in (:Int32, :Int64, :Integer, :AbstractFloat, :Real)
   @eval convert{T<:SysFloat}(::Type{Float{T}}, x::($T)) = Float(convert(($T),x))
 end  
 
-convert{T<:SysFloat}(::Type{BigFloat}, x::Single{T}) = parse(BigFloat, string(x.hi))
-convert{T<:SysFloat}(::Type{BigInt}, x::Single{T}) = parse(BigInt, string(x.hi))
-convert{T<:SysFloat}(::Type{Rational{BigInt}}, x::Single{T}) = 
+convert{T<:SysFloat}(::Type{BigFloat}, x::Float{T}) = parse(BigFloat, string(x.hi))
+convert{T<:SysFloat}(::Type{BigInt}, x::Float{T}) = parse(BigInt, string(x.hi))
+convert{T<:SysFloat}(::Type{Rational{BigInt}}, x::Float{T}) = 
     convert(Rational{BigInt}, parse(BigFloat, string(x.hi))
 
