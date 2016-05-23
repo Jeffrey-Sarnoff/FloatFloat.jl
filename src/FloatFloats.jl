@@ -18,7 +18,7 @@ import Base: hash, string,
 import Base.Math:@horner    
 
 
-export FloatFloat, FF, FF64, FF128, hi, lo,
+export FloatFloat, Float, FF, FF64, FF128, hi, lo,
     iszero, isnonzero, ispos, isneg, isnonneg,
     hash, maxmin, fmod,
     ulp, NaNFF, InfFF,
