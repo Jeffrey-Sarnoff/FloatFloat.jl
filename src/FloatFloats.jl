@@ -41,7 +41,11 @@ macro BigInt(x)
     parse(BigInt, string(eval(:($x))))
 end
 
-setprecision(BigFloat,384)
+if VERSION > "0.5.0-dev"
+    setprecision(BigFloat,384)
+else
+    set_bigfloat_precision(384)
+end
 
 include("type/Float.jl")
 
