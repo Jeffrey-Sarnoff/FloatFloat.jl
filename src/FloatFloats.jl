@@ -41,7 +41,7 @@ macro BigInt(x)
     parse(BigInt, string(eval(:($x))))
 end
 
-if VERSION > "0.5.0-dev"
+if VERSION > v"0.5.0-dev"
     setprecision(BigFloat,384)
 else
     set_bigfloat_precision(384)
